@@ -1,18 +1,29 @@
-/* Error: Undefined mixin.
- *   ,
- * 3 |     @include button(primary);
- *   |     ^^^^^^^^^^^^^^^^^^^^^^^^
- *   '
- *   components\_buttons.scss 3:5  @import
- *   main.scss 4:9                 root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Undefined mixin.\a   \2577 \a 3 \2502      @include button(primary);\d\a   \2502      ^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   components\\_buttons.scss 3:5  @import\a   main.scss 4:9                 root stylesheet";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Shrikhand&display=swap");
+.header__logo {
+  width: 300px;
 }
+.header__nav {
+  display: flex;
+  justify-content: space-around;
+}
+.header__anchors {
+  display: flex;
+  font-size: 20px;
+  list-style: none;
+}
+.header__anchors a {
+  text-decoration: none;
+}
+.header__product {
+  padding-right: 50px;
+}
+.header__ordered {
+  padding-right: 50px;
+}
+.header__contact {
+  padding-top: 20px;
+  font-size: 25px;
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=main.css.map */
