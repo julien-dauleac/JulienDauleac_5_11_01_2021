@@ -1,10 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Shrikhand&display=swap");
 .header__logo {
   width: 300px;
+  text-align: center;
+  margin: 0;
 }
 .header__nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 .header__anchors {
   display: flex;
@@ -20,18 +22,16 @@
 .header__ordered {
   padding-right: 50px;
 }
-.header__contact {
-  padding-top: 20px;
-  font-size: 25px;
-  text-decoration: none;
+.header__basket {
+  padding-right: 50px;
 }
-
 .footer {
   display: flex;
   background-color: #F2F2F2;
   margin-top: 50px;
   flex-wrap: wrap;
   margin-bottom: 40px;
+  justify-content: center;
 }
 .footer__about {
   display: flex;

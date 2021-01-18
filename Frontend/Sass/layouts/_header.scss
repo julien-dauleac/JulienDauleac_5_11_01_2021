@@ -4,12 +4,14 @@
   &__logo
   {
     width: 300px;
+    text-align: center;
+    margin: 0;
   }
 
   &__nav
   {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
   }
 
   &__anchors
@@ -36,13 +38,11 @@
 
   &__basket
   {
-
+    padding-right: 50px;
   }
 
   &__contact
   {
-    padding-top: 20px;
-    font-size: 25px;
-    text-decoration: none;
+
   }
 }

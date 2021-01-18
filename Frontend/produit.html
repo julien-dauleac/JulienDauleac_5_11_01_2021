@@ -8,24 +8,33 @@
 
     <link href="Sass/main.css" rel="stylesheet"/>
 
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/a43780fc4a.js"></script>
+
     <title>Produit</title>
 </head>
 <body>
 <header>
     <div class="header">
+        <img alt="RetroShop" id="header__logo" src="images/logo.jpg"/>
         <nav class="header__nav">
-            <img alt="RetroShop" id="header__logo" src="images/logo.jpg"/>
             <ul class="header__anchors">
-                <li class="header__product"><a href="index.html">Accueil</a></li>
-                <li class="header__ordered"><a href="commande.html">Commande</a></li>
-                <li class="header__basket"><a href="panier.html">Panier</a></li>
+                <i class="fas fa-money-bill-wave"></i><li class="header__product"><a href="index.html">Accueil</a></li>
+                <i class="fas fa-child"></i><li class="header__ordered"><a href="commande.html">Commande</a></li>
+                <i class="fas fa-heart"></i><li class="header__basket"><a href="panier.html">Panier</a></li>
+                <i class="fas fa-dog"></i><li class="header__contact"><a href="#">Contact</a></li>
             </ul>
-            <a href="#" class="header__contact">Contact</a>
         </nav>
     </div>
 </header>
 <main>
-
+    <form id="search">
+        <i class="fas fa-map-marker-alt map" id="map_icon"></i>
+        <input class="holder" name="q" placeholder="Votre recherche de produit" type="search">
+        <button id="button_search" type="submit">
+            <span class="submit">Rechercher</span>
+            <i class="fas fa-search fa-lg" id="search_icon"></i>
+        </button>
+    </form>
 </main>
 <footer>
     <div class="footer">
