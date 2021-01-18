@@ -1,0 +1,30 @@
+{
+  "name": "projet_5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "test": "...",
+    "build": "webpack",
+    "type": "git",
+    "url": "git+https://github.com/Julien-Dauleac/JulienDauleac_5_11_01_2021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Julien-Dauleac/JulienDauleac_5_11_01_2021/issues"
+  },
+  "homepage": "https://github.com/Julien-Dauleac/JulienDauleac_5_11_01_2021#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-loader": "^8.2.2",
+    "babel-polyfill": "^6.26.0",
+    "webpack": "^5.15.0",
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
