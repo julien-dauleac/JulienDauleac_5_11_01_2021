@@ -8,7 +8,7 @@
 }
 .header__anchors {
   display: flex;
-  font-size: 20px;
+  font-size: 25px;
   list-style: none;
 }
 .header__anchors a {
@@ -24,6 +24,33 @@
   padding-top: 20px;
   font-size: 25px;
   text-decoration: none;
+}
+
+.footer {
+  display: flex;
+  background-color: #F2F2F2;
+  margin-top: 50px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.footer__about {
+  display: flex;
+  flex-direction: column;
+  padding-right: 50px;
+}
+.footer__products {
+  display: flex;
+  flex-direction: column;
+  padding-right: 50px;
+}
+.footer__assistance {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer a {
+  text-decoration: none;
+  line-height: 30px;
 }
 
 /*# sourceMappingURL=main.css.map */
