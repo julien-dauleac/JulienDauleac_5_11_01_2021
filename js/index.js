@@ -30,6 +30,7 @@ function populateTableList() {
         <td class="w-25 align-middle">${prod.name}</td>
         <td class="w-25 align-middle">${prod.price}€</td>
         <td class="w-25 align-middle"><button class="btn btn-info">Voir plus</button></td>
+        <td class="w-25 align-middle"><button class="btn btn-info">Validée</button></td>
         `
     )
     document.getElementById('productList').innerHTML = listOfProducts
