@@ -29,7 +29,7 @@
   margin-top: 50px;
   flex-wrap: wrap;
   margin-bottom: 40px;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 .footer__about {
   display: flex;
