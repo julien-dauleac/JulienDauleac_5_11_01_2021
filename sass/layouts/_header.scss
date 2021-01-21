@@ -1,5 +1,7 @@
 .header
 {
+  display: flex;
+  justify-content: center;
 
   &__logo
   {
@@ -17,23 +19,10 @@
   &__anchors
   {
     display: flex;
-    font-size: 25px;
+    font-size: 40px;
     list-style: none;
-  }
-
-  &__anchors a
-  {
+    padding-top: 65px;
     text-decoration: none;
-  }
-
-  &__product
-  {
-    padding-right: 50px;
-  }
-
-  &__ordered
-  {
-    padding-right: 50px;
   }
 
   &__basket
@@ -41,8 +30,4 @@
     padding-right: 50px;
   }
 
-  &__contact
-  {
-
-  }
 }

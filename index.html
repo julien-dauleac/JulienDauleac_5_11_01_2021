@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <link href="images/favicon.png" rel="shortcut icon" type="image/png"/>
-
     <link href="sass/main.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/a43780fc4a.js"></script>
-
     <script src="js/index.js"></script>
 
     <title>RetroShop</title>
@@ -18,18 +18,34 @@
 <header>
     <div class="header">
         <img alt="RetroShop" id="header__logo" src="images/logo.jpg"/>
+    </div>
         <nav class="header__nav">
             <ul class="header__anchors">
-                <i class="fas fa-heart"></i><li class="header__basket"><a href="panier.html">Panier</a></li>
+                <li class="header__basket"><a href="panier.html">Panier</a></li>
             </ul>
         </nav>
-    </div>
 </header>
 <main>
-    <div id="board">
-        <form name="products">
-            <input type="button" value="Contenu du tableau" onClick="tab">
-        </form>
+    <div class="container bg-white p-5 mt-5">
+        <!-- Logo -->
+        <div class="img-fluid">
+        </div>
+        <!-- Bouton pour appeler les produits -->
+        <button class="btn btn-primary mt-2 mb-2" onclick='populateTableList()'>Voir les produits</button>
+        <!-- Table  -->
+        <table class="table table-image">
+            <thead class="thead-dark">
+            <tr class="text-center">
+                <th>Images</th>
+                <th>Noms</th>
+                <th>Prix</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <!-- Table avec la liste des produits -->
+            <tbody id="productList">
+            </tbody>
+        </table>
     </div>
 </main>
 <footer>
