@@ -29,7 +29,7 @@ function populateTableList() {
         <td><img src=${prod.picture} alt="" class="img-fluide img-thumbnail"></td>
         <td class="w-25 align-middle">${prod.name}</td>
         <td class="w-25 align-middle">${prod.price}€</td>
-        <td class="w-25 align-middle"><button class="btn btn-info">Voir plus</button></td>
+        <td class="w-25 align-middle"><button class="btn btn-info">Voir plus</button></td><a href="produit.html"</a>
         `
     )
     document.getElementById('productList').innerHTML = listOfProducts

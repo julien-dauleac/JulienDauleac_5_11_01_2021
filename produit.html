@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <link href="images/favicon.png" rel="shortcut icon" type="image/png"/>
-
     <link href="sass/main.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/a43780fc4a.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/produit.js"></script>
 
     <title>Produit</title>
 </head>
@@ -16,25 +19,46 @@
 <header>
     <div class="header">
         <img alt="RetroShop" id="header__logo" src="images/logo.jpg"/>
-        <nav class="header__nav">
-            <ul class="header__anchors">
-                <i class="fas fa-money-bill-wave"></i><li class="header__product"><a href="index.html">Accueil</a></li>
-                <i class="fas fa-heart"></i><li class="header__basket"><a href="panier.html">Panier</a></li>
-            </ul>
-        </nav>
     </div>
+    <nav class="header__nav">
+        <ul class="header__anchors">
+            <li class="header__basket"><a href="panier.html">Panier</a></li>
+            <li class="header__product"><a href="index.html">Accueil</a></li>
+        </ul>
+    </nav>
 </header>
 <main>
-    <form id="search">
-        <i class="fas fa-map-marker-alt map" id="map_icon"></i>
-        <label>
-            <input class="holder" name="q" placeholder="Votre recherche de produit" type="search">
-        </label>
-        <button id="button_search" type="submit">
-            <span class="submit">Rechercher</span>
-            <i class="fas fa-search fa-lg" id="search_icon"></i>
-        </button>
-    </form>
+    <div class="container bg-white p-5 mt-5">
+        <!-- Bouton pour appeler les produits -->
+        <button class="btn btn-primary mt-2 mb-2" onclick='populateTableList()'>Voir le produit séléctionné</button>
+        <!-- Table  -->
+        <table class="table table-image">
+            <thead class="thead-dark">
+            <tr class="text-center">
+                <th>Image</th>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Description</th>
+                <th>Lentilles
+                <form name="lenses">
+                    <label>
+                        <select name="list" onChange="Lien()">
+                            <option value="#">Choisir une option de lentille
+                            <option value="#">Lentille 1
+                            <option value="#">Lentille 2
+                            <option value="#">Lentille 3
+                        </select>
+                    </label>
+                </form>
+                </th>
+                <th>Panier</th>
+            </tr>
+            </thead>
+            <!-- Table avec le détail du produit -->
+            <tbody id="productOfDescription">
+            </tbody>
+        </table>
+    </div>
 </main>
 <footer>
     <div class="footer">
