@@ -1,10 +1,9 @@
-function Product(picture, name, price, description, lenses, amount){
+function Product(picture, name, price, description, lenses){
     this.picture = picture;
     this.price = price;
     this.name = name;
     this.description = description;
     this.lenses = lenses;
-    this.amount = amount;
 }
 let productDescription = [];
 productDescription.push(Product);
@@ -47,7 +46,7 @@ function populateTableList() {
     document.getElementById('productOfDescription').innerHTML = ProductOfDescription
 }
 
-let urlSearchParams = URL.searchParams;
+let urlSearchParams = URL.searchParam;
 
 let params = (new URL(document.location)).searchParams;
 let id = params.get('id');

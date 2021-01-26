@@ -16,15 +16,34 @@
 <header>
     <div class="header">
         <img alt="RetroShop" id="header__logo" src="images/logo.jpg"/>
-        <nav class="header__nav">
-            <ul class="header__anchors">
-                <i class="fas fa-child"></i><li class="header__ordered"><a href="index.html">Accueil</a></li>
-            </ul>
-        </nav>
     </div>
+    <nav class="header__nav">
+        <ul class="header__anchors">
+            <li class="header__basket"><a href="panier.html">Panier</a></li>
+            <li class="header__product"><a href="index.html">Accueil</a></li>
+        </ul>
+    </nav>
 </header>
 <main>
-
+    <div class="container bg-white p-5 mt-5">
+        <!-- Table  -->
+        <table class="table table-image">
+            <thead class="thead-dark">
+            <tr class="text-center">
+                <th>Image</th>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Description</th>
+                <th>Lentilles</th>
+                <th>Quantité</th>
+                <th>Panier</th>
+            </tr>
+            </thead>
+            <!-- Table avec le détail du produit séléctionné -->
+            <tbody id="productOfDescription">
+            </tbody>
+        </table>
+    </div>
 </main>
 <footer>
     <div class="footer">
