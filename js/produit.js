@@ -5,17 +5,29 @@ function Product(picture, name, price, description, lenses){
     this.description = description;
     this.lenses = lenses;
 }
-let productDescription = [];
-productDescription.push(Product);
+let params = (new URL(document.location)).searchParams;
+let id = params.get('_id');
+let details = [];
+let request = new XMLHttpRequest();
+request.onreadystatechange = function() {
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+        let camera = JSON.parse(this.responseText);
+        let productCamera = new Product (camera.imageUrl, camera.name, camera.price, camera.description, camera.lenses)
+        details.push(productCamera);
+        populateTableList()
+    }
+};
+request.open("GET", 'http://localhost:3000/api/cameras/:_id');
+request.send();
 
 function populateTableList() {
-    let ProductOfDescription = '';
-    productDescription.forEach(prod =>
-        ProductOfDescription += `
+    let productOfDescription = '';
+    details.forEach(prod =>
+        productOfDescription += `
         <tr class="text-center">
         <td><img src=${prod.picture} alt="" class="img-fluide img-thumbnail"></td>
         <td class="w-20 align-middle">${prod.name}</td>
-        <td class="w-15 align-middle">${prod.price}€</td>
+        <td class="w-15 align-middle">${prod.price/100}€</td>
         <td class="w-25 align-middle">${prod.description}</td>
         <td class="w-15 align-middle"><form name="lenses">
                     <label>
@@ -43,12 +55,5 @@ function populateTableList() {
         <td class="w-15 align-middle"><a href="panier.html" class="btn btn-info">Validé</a></td>
         `
     )
-    document.getElementById('productOfDescription').innerHTML = ProductOfDescription
+    document.getElementById('productOfDescription').innerHTML = productOfDescription
 }
-
-let urlSearchParams = URL.searchParam;
-
-let params = (new URL(document.location)).searchParams;
-let id = params.get('id');
-
-populateTableList()

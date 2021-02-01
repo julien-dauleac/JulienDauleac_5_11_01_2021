@@ -1,52 +1,44 @@
-fetch('http://localhost:3000/api/cameras')
-    .then(response => response.json())
-    .then(response => alert(JSON.parse(response)))
-    .catch(error => alert("Erreur : " + error));
+let main = document.querySelector('main');
 
-let promise = fetch('http://localhost:3000/api/cameras', {
-    method: "GET", //ou POST, PUT, DELETE, etc.
-    headers: {
-        "Content-Type": "text/plain;charset=UTF-8" //pour un corps de type chaine
-    },
-    body: undefined, //ou string, FormData, Blob, BufferSource, ou URLSearchParams
-    referrer: "about:client", //ou "" (pas de réferance) ou une url de l'origine
-    referrerPolicy: "no-referrer-when-downgrade", //ou no-referrer, origin, same-origin...
-    mode: "cors", //ou same-origin, no-cors
-    credentials: "same-origin", //ou omit, include
-    cache: "default", //ou no-store, reload, no-cache, force-cache, ou only-if-cached
-    redirect: "follow", //ou manual ou error
-    integrity: "", //ou un hash comme "sha256-abcdef1234567890"
-    keepalive: false, //ou true pour que la requête survive à la page
-    signal: undefined //ou AbortController pour annuler la requête
-});
+let requestURL = 'http://localhost:3000/api/cameras';
+let request = new XMLHttpRequest();
+request.open('GET', requestURL);
+request.responseType = 'json';
+request.send();
+request.onload = function() {
+    let cameras = request.response;
+    tableCameras(cameras);
+}
 
-$(document).ready(function(){
-    $.ajax({
-        //L'URL de la requête
-        url: 'http://localhost:3000/api/cameras',
+function tableCameras(jsonObj) {
+    let cameras = jsonObj['name'];
 
-        //La méthode d'envoi (type de requête)
-        method: "GET",
+    for (let i = 0; i < cameras; i++) {
+        let myArticle = document.createElement('table');
+        let myTR = document.createElement('tr');
+        let myPara1 = document.createElement('td');
+        let myPara2 = document.createElement('td');
+        let myPara3 = document.createElement('td');
+        let myList = document.createElement('td');
 
-        //Le format de réponse attendu
-        dataType : "json",
-    })
-        //Ce code sera exécuté en cas de succès - La réponse du serveur est passée à done()
-        /*On peut par exemple convertir cette réponse en chaine JSON et insérer
-         * cette chaine dans un div id="res"*/
-        .done(function(response){
-            let data = JSON.stringify(response);
-            $("div#res").append(data);
-        })
+        myTR.textContent = cameras[i].name;
+        myPara1.textContent = 'Images: ' + cameras[i].imageURL;
+        myPara2.textContent = 'Prix: ' + cameras[i].price;
+        myPara3.textContent = 'Lentilles:';
 
-        //Ce code sera exécuté en cas d'échec - L'erreur est passée à fail()
-        //On peut afficher les informations relatives à la requête et à l'erreur
-        .fail(function(error){
-            alert("La requête s'est terminée en échec. Infos : " + JSON.stringify(error));
-        })
+        let lenses = cameras[i].lenses;
+        for (let j = 0; j < lenses.length; j++) {
+            let listItem = document.createElement('li');
+            listItem.textContent = allCameras[j];
+            myList.appendChild(listItem);
+        }
 
-        //Ce code sera exécuté que la requête soit un succès ou un échec
-        .always(function(){
-            alert("Requête effectuée");
-        });
-});
+        myArticle.appendChild(myH2);
+        myArticle.appendChild(myPara1);
+        myArticle.appendChild(myPara2);
+        myArticle.appendChild(myPara3);
+        myArticle.appendChild(myList);
+
+        main.appendChild(myArticle);
+    }
+}
