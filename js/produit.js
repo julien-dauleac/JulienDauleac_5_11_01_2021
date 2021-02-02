@@ -5,22 +5,23 @@ function Product(picture, name, price, description, lenses){
     this.description = description;
     this.lenses = lenses;
 }
-let params = (new URL(document.location)).searchParams;
-let id = params.get('_id');
 let details = [];
 let request = new XMLHttpRequest();
 request.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
         let camera = JSON.parse(this.responseText);
+        let params = new URLSearchParams(window.location.search);
+        let id = params.get('id');
+        console.log(id)
         let productCamera = new Product (camera.imageUrl, camera.name, camera.price, camera.description, camera.lenses)
         details.push(productCamera);
-        populateTableList()
+        detailsProduct()
     }
 };
-request.open("GET", 'http://localhost:3000/api/cameras/:_id');
+request.open("GET", 'http://localhost:3000/api/cameras/');
 request.send();
 
-function populateTableList() {
+function detailsProduct() {
     let productOfDescription = '';
     details.forEach(prod =>
         productOfDescription += `
@@ -48,7 +49,6 @@ function populateTableList() {
                             <option value="#">3
                             <option value="#">4
                             <option value="#">5
-                            
                         </select>
                     </label>
                 </form></td>
