@@ -7,6 +7,8 @@ function Product(picture, name, price, lenses, quantity, total){
     this.total = total;
 }
 
+// Call Ajax //
+
 let basket = [];
 let request = new XMLHttpRequest();
 request.onreadystatechange = function() {
@@ -18,10 +20,13 @@ request.onreadystatechange = function() {
             basket.push(productBasket);
         })
         populateTableList()
+        sendData()
     }
 };
 request.open("GET", 'http://localhost:3000/api/cameras/');
 request.send();
+
+// Tableau des articles //
 
 function populateTableList() {
     let productBasket = '';
@@ -40,38 +45,31 @@ function populateTableList() {
     document.getElementById('productBasket').innerHTML = productBasket
 }
 
+// Formulaire Client //
+
 function sendData(data) {
     let XHR = new XMLHttpRequest();
     let urlEncodedData = "";
     let urlEncodedDataPairs = [];
     let name;
 
-    // Transformez l'objet data en un tableau de paires clé/valeur codées URL.
     for(name in data) {
         urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
     }
 
-    // Combinez les paires en une seule chaîne de caractères et remplacez tous
-    // les espaces codés en % par le caractère'+' ; cela correspond au comportement
-    // des soumissions de formulaires de navigateur.
     urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
 
-    // Définissez ce qui se passe en cas de succès de soumission de données
     XHR.addEventListener('load', function(event) {
         alert('Données envoyées et réponse chargée.');
     });
 
-    // Définissez ce qui arrive en cas d'erreur
     XHR.addEventListener('error', function(event) {
         alert('Oups! Quelque chose s\'est mal passé.');
     });
 
-    // Configurez la requête
     XHR.open('POST', 'http://localhost:3000/api/cameras/');
 
-    // Ajoutez l'en-tête HTTP requise pour requêtes POST de données de formulaire
     XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-    // Finalement, envoyez les données.
     XHR.send(urlEncodedData);
 }

@@ -5,6 +5,9 @@ function Product(picture, name, price, description, lenses){
     this.description = description;
     this.lenses = lenses;
 }
+
+// Call Ajax //
+
 let products = [];
 let request = new XMLHttpRequest();
 request.onreadystatechange = function() {
@@ -22,10 +25,12 @@ request.onreadystatechange = function() {
 request.open("GET", 'http://localhost:3000/api/cameras/');
 request.send();
 
+// Tableau des articles //
+
 function populateTableList() {
-    let productOfDescription = '';
+    let productDescription = '';
     products.forEach(camera =>
-        productOfDescription += `
+        productDescription += `
         <tr class="text-center">
         <td><img src=${camera.picture} alt="" class="img-fluide img-thumbnail"></td>
         <td class="w-15 align-middle">${camera.name}</td>
@@ -45,16 +50,38 @@ function populateTableList() {
                     <label>
                         <select name="list" onChange="Lien()">
                             <option value="#">Choisir la quantité
-                            <option value="#">1
-                            <option value="#">2
-                            <option value="#">3
-                            <option value="#">4
-                            <option value="#">5
+                            <option value="1">1
+                            <option value="2">2
+                            <option value="3">3
+                            <option value="4">4
+                            <option value="5">5
                         </select>
                     </label>
                 </form></td>
-        <td class="w-15 align-middle"><a href="index.html" class="btn btn-info">Ajouter</a></td>
+        <td class="w-15 align-middle"><a href="index.html" class="btn btn-info">Ajouter au panier</a></td>
         `
     )
-    document.getElementById('productOfDescription').innerHTML = productOfDescription
+    document.getElementById('productDescription').innerHTML = productDescription
+    document.getElementById("prixTotal").innerHTML = basket.getPricebasket();
+}
+
+// Ajouter un article //
+
+function Add()
+{
+    let id = parseInt(document.getElementById("id").value);
+    let quantity = parseInt(document.getElementById("quantité").value);
+    let price = parseInt(document.getElementById("price").value);
+    let basket = new Panier();
+    basket.add(id, quantity, price);
+    let table = document.getElementById("tableau");
+}
+
+// Supprimer un article //
+
+function Delete(code)
+{
+    let basket = new Panier();
+    let table = document.getElementById("tableau");
+
 }

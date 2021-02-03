@@ -4,6 +4,9 @@ function Product(picture, name, price, id){
     this.price = price;
     this.id = id;
 }
+
+// Call Ajax //
+
 let products = [];
 let request = new XMLHttpRequest();
 request.onreadystatechange = function() {
@@ -19,6 +22,8 @@ request.onreadystatechange = function() {
 };
 request.open("GET", 'http://localhost:3000/api/cameras');
 request.send();
+
+// Tableau des articles //
 
 function populateTableList() {
     let listOfProducts = '';
