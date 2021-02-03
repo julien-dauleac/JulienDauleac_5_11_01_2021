@@ -62,26 +62,4 @@ function populateTableList() {
         `
     )
     document.getElementById('productDescription').innerHTML = productDescription
-    document.getElementById("prixTotal").innerHTML = basket.getPricebasket();
-}
-
-// Ajouter un article //
-
-function Add()
-{
-    let id = parseInt(document.getElementById("id").value);
-    let quantity = parseInt(document.getElementById("quantité").value);
-    let price = parseInt(document.getElementById("price").value);
-    let basket = new Panier();
-    basket.add(id, quantity, price);
-    let table = document.getElementById("tableau");
-}
-
-// Supprimer un article //
-
-function Delete(code)
-{
-    let basket = new Panier();
-    let table = document.getElementById("tableau");
-
 }
