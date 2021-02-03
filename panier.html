@@ -25,7 +25,25 @@
     </nav>
 </header>
 <main>
-
+    <div class="container bg-white p-5 mt-5">
+        <!-- Table  -->
+        <table class="table table-image">
+            <thead class="thead-dark">
+            <tr class="text-center">
+                <th>Images</th>
+                <th>Noms</th>
+                <th>Prix</th>
+                <th>Lentilles choisi</th>
+                <th>Quantité</th>
+                <th>Supprimer</th>
+            </tr>
+            </thead>
+            <!-- Table avec le détail du produit séléctionné -->
+            <tbody id="productBasket"></tbody>
+        </table>
+    </div>
+    <!-- Frmulaire de validation de commande -->
+    <button type="button" onclick="sendData({test:'ok'})">Cliquez ici !</button>
 </main>
 <footer>
     <div class="footer">
