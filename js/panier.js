@@ -20,7 +20,6 @@ request.onreadystatechange = function() {
             basket.push(productBasket);
         })
         populateTableList()
-        sendData()
     }
 };
 request.open("GET", 'http://localhost:3000/api/cameras/');
@@ -46,30 +45,3 @@ function populateTableList() {
 }
 
 // Formulaire Client //
-
-function sendData(data) {
-    let XHR = new XMLHttpRequest();
-    let urlEncodedData = "";
-    let urlEncodedDataPairs = [];
-    let name;
-
-    for(name in data) {
-        urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
-    }
-
-    urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
-
-    XHR.addEventListener('load', function(event) {
-        alert('Données envoyées et réponse chargée.');
-    });
-
-    XHR.addEventListener('error', function(event) {
-        alert('Oups! Quelque chose s\'est mal passé.');
-    });
-
-    XHR.open('POST', 'http://localhost:3000/api/cameras/');
-
-    XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-    XHR.send(urlEncodedData);
-}
