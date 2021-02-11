@@ -71,6 +71,26 @@ request.onreadystatechange = function() {
                 price: idSelection.price /100
             }
             console.log(productBasket);
+            let sendLocalStorage = JSON.parse(localStorage.getItem("product"));
+            let popupConfirmation = () =>{
+                if(window.confirm(`${idSelection.name} option: ${idSelection.options} a bien été ajouté au panier
+            Consultez le panier OK ou revenir a l'accueil ANNULER`)){
+                    window.location.href = "panier.html";
+                }else{
+                    window.location.href = "index.html";
+                }
+            }
+            if(sendLocalStorage){
+                sendLocalStorage.push(productBasket);
+                localStorage.setItem("product", JSON.stringify(sendLocalStorage));
+                popupConfirmation();
+            }
+            else {
+                sendLocalStorage = [];
+                sendLocalStorage.push(productBasket);
+                localStorage.setItem("product", JSON.stringify(sendLocalStorage));
+                popupConfirmation();
+            }
         });
     }
 };
