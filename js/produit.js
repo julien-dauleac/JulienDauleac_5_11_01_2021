@@ -8,8 +8,6 @@ function Product(picture, name, price, description, lenses){
 // Injecter html dans la page produit
 
 let selectProduct = document.querySelector(".product_selection");
-let selectOptions = document.querySelector("#option_produit");
-console.log(selectOptions);
 // Call Ajax //
 let products = [];
 let request = new XMLHttpRequest();
@@ -20,7 +18,7 @@ request.onreadystatechange = function() {
         let params = new URLSearchParams(window.location.search);
         let id = params.get('id');
         let idSelection = camera.find((element) => element._id === id);
-        let productCamera = new Product (idSelection.imageUrl, idSelection.name, idSelection.price, idSelection.description, idSelection.lenses, idSelection.lenses, idSelection.lenses)
+        let productCamera = new Product (idSelection.imageUrl, idSelection.name, idSelection.price, idSelection.description, idSelection.lenses)
         products.push(productCamera);
         console.log(productCamera)
         selectProduct.innerHTML = `
@@ -43,31 +41,31 @@ request.onreadystatechange = function() {
     <form>
      <label for="number_produit">Choisir la quantitée : </label>
      <select name="number_produit" id="number_produit">
-     <option value="option1">1</option>
-     <option value="option2">2</option>
-     <option value="option2">3</option>
+     <option value="1">1</option>
+     <option value="2">2</option>
+     <option value="3">3</option>
      </select>
     </form>
     <button id="btn_send" type="submit" name="btn_send">Ajouter l'article au panier</button>
     </div>
     </div>
 `;
-        //let options = idSelection.lenses;
-        //let choiceOptions = [];
-        //selectOptions.innerHTML = choiceOptions;
-        //for (let i = 0; i < options.length; i++) {
-          //  choiceOptions += `
-            //<option value="${i}">${options[i]}</option>
-            //`;
-        //}
+        let selectOptions = document.querySelector("#option_produit");
+        let options = idSelection.lenses;
+        for (let i = 0; i < options.length; i++) {
+            selectOptions.innerHTML += `
+            <option value="${options[i]}">${options[i]}</option>
+            `;
+        }
+        let numberProduct = document.querySelector("#number_produit");
         let sendBasket = document.querySelector("#btn_send");
         sendBasket.addEventListener("click", (event)=>{
             event.preventDefault()
             let productBasket = {
                 name: idSelection.name,
                 _id: idSelection._id,
-                lenses: idSelection.options,
-                quantity: 1,
+                lenses: selectOptions.value,
+                quantity: numberProduct.value,
                 price: idSelection.price /100
             }
             console.log(productBasket);
