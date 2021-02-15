@@ -8,7 +8,6 @@ function Product(picture, name, price, lenses, quantity, total){
 }
 
 // Call Ajax //
-
 let basket = [];
 let request = new XMLHttpRequest();
 request.onreadystatechange = function() {
@@ -18,6 +17,7 @@ request.onreadystatechange = function() {
         cameras.forEach(cameras =>{
             let productBasket = new Product (cameras.imageUrl, cameras.name, cameras.price, cameras.lenses, cameras.quantity, cameras.total)
             basket.push(productBasket);
+            //let size = localStorage.length; for(let i=0; i <size; i++) {alert(localStorage.key(i);}
         })
         populateTableList()
     }
@@ -45,3 +45,14 @@ function populateTableList() {
 }
 
 // Formulaire Client //
+
+//let contact = {
+    //firstname: prenom.value,
+    //lastname: nom.value,
+  //  ...
+//}
+//let products = ["5bedf", "a74bf5", .. ];
+//{
+  //  contact: contact,
+    //    products: products
+//}
