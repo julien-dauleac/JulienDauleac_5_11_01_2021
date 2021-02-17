@@ -16,7 +16,6 @@ request.onreadystatechange = function() {
         sendLocalStorage.forEach(sendLocalStorage =>{
             let productsBasket = new Product (sendLocalStorage.picture, sendLocalStorage.name, sendLocalStorage.price, sendLocalStorage.lenses, sendLocalStorage.quantity)
             basket.push(productsBasket);
-            //let size = localStorage.length; for(let i=0; i <size; i++) {alert(localStorage.key(i);}
         })
         basketList()
     }
@@ -39,18 +38,42 @@ function basketList() {
         <td class="w-15 align-middle"><a href="panier.html" class="btn btn-delete">Supprimer</a></td>
         `
     )
-    document.getElementById('basket').innerHTML = productBasket
+    document.getElementById('allBasket').innerHTML = productBasket
 }
 
 // Formulaire Client //
 
-//let contact = {
-    //firstname: prenom.value,
-    //lastname: nom.value,
-  //  ...
-//}
-//let products = ["5bedf", "a74bf5", .. ];
-//{
-  //  contact: contact,
-    //    products: products
-//}
+let customerForm = document.querySelector("#customer");
+customerForm.innerHTML = `
+        <label> Prénom
+            <input type="text" name="input" value="">
+        </label>
+        <label> Nom
+            <input type="text" name="output" value="">
+        </label>
+        <label> Adresse
+            <input type="text" name="output" value="">
+        </label>
+        <label> Ville
+            <input type="text" name="output" value="">
+        </label>
+        <label> Adresse éléctronique
+            <input type="text" name="output" value="adresse_electronique">
+        </label>
+        <input type="button" name="bouton" value="Valider">
+`;
+
+let contact = {
+    firstName: prenom.value,
+    lastName: nom.value,
+    address: adresse.value,
+    city: ville.value,
+    emailAddress: adresse_electronique.value
+}
+
+let products = ["product"];
+
+{
+    contact: contact;
+    products: products;
+}
