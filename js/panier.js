@@ -1,47 +1,45 @@
-function Product(picture, name, price, lenses, quantity, total){
+function Product(picture, name, price, lenses, quantity){
     this.picture = picture;
     this.price = price;
     this.name = name;
     this.lenses = lenses;
     this.quantity = quantity;
-    this.total = total;
 }
 
 // Call Ajax //
+
 let basket = [];
 let request = new XMLHttpRequest();
 request.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-        let cameras = JSON.parse(this.responseText);
-        console.log(cameras);
-        cameras.forEach(cameras =>{
-            let productBasket = new Product (cameras.imageUrl, cameras.name, cameras.price, cameras.lenses, cameras.quantity, cameras.total)
-            basket.push(productBasket);
+        let sendLocalStorage = JSON.parse(localStorage.getItem("product"));
+        sendLocalStorage.forEach(sendLocalStorage =>{
+            let productsBasket = new Product (sendLocalStorage.picture, sendLocalStorage.name, sendLocalStorage.price, sendLocalStorage.lenses, sendLocalStorage.quantity)
+            basket.push(productsBasket);
             //let size = localStorage.length; for(let i=0; i <size; i++) {alert(localStorage.key(i);}
         })
-        populateTableList()
+        basketList()
     }
 };
 request.open("GET", 'http://localhost:3000/api/cameras/');
 request.send();
 
-// Tableau des articles //
+// Tableau des articles dans le panier //
 
-function populateTableList() {
+function basketList() {
     let productBasket = '';
-    basket.forEach(camera =>
+    basket.forEach(cameras =>
         productBasket += `
         <tr class="text-center">
-        <td><img src=${camera.picture} alt="" class="img-fluide img-thumbnail"></td>
-        <td class="w-20 align-middle">${camera.name}</td>
-        <td class="w-15 align-middle">${camera.price/100}€</td>
-        <td class="w-15 align-middle">${camera.lenses}</td>
-        <td class="w-15 align-middle">${camera.quantity}</td>
-        <td class="w-15 align-middle">${camera.total}</td>
-        <td class="w-15 align-middle"><a href="commande.html" class="btn btn-info">Validé</a></td>
+        <td><img src=${cameras.picture} alt="" class="img-fluide img-thumbnail"></td>
+        <td class="w-20 align-middle">${cameras.name}</td>
+        <td class="w-15 align-middle">${cameras.price}€</td>
+        <td class="w-15 align-middle">${cameras.lenses}</td>
+        <td class="w-15 align-middle">${cameras.quantity}</td>
+        <td class="w-15 align-middle"><a href="panier.html" class="btn btn-delete">Supprimer</a></td>
         `
     )
-    document.getElementById('productBasket').innerHTML = productBasket
+    document.getElementById('basket').innerHTML = productBasket
 }
 
 // Formulaire Client //

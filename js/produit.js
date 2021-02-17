@@ -5,16 +5,17 @@ function Product(picture, name, price, description, lenses){
     this.description = description;
     this.lenses = lenses;
 }
-// Injecter html dans la page produit
+// Injecter html dans la page produit //
 
 let selectProduct = document.querySelector(".product_selection");
+
 // Call Ajax //
+
 let products = [];
 let request = new XMLHttpRequest();
 request.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
         let camera = JSON.parse(this.responseText);
-        console.log(camera);
         let params = new URLSearchParams(window.location.search);
         let id = params.get('id');
         let idSelection = camera.find((element) => element._id === id);
@@ -24,14 +25,14 @@ request.onreadystatechange = function() {
         selectProduct.innerHTML = `
  <div class="page_product">
     <div class="product_picture">
-    <img src="${idSelection.imageURL}"  alt=""/>
+    <img src="${idSelection.imageUrl}"  alt="" class="img_product"/>
     </div>
     <div class="product">
     <ul>
     <li> Nom du produit : <span>${idSelection.name}</span></li>
     <li> Description : <span>${idSelection.description}</span></li>
     <li> Lentilles : <span>${idSelection.lenses}</span></li>
-    <li> Prix : <span>${idSelection.price / 100}€</span></li>
+    <li> Prix : <span>${idSelection.price/100}€</span></li>
     </ul>
     <form>
      <label for="option_produit">Choisir l'option de lentilles : </label>
@@ -62,6 +63,7 @@ request.onreadystatechange = function() {
         sendBasket.addEventListener("click", (event)=>{
             event.preventDefault()
             let productBasket = {
+                picture: idSelection.imageUrl,
                 name: idSelection.name,
                 _id: idSelection._id,
                 lenses: selectOptions.value,
