@@ -47,34 +47,34 @@ function basketList() {
 let customerForm = document.querySelector("#customer");
 customerForm.innerHTML = `
         <label> Prénom
-            <input class= "prenom" type="text" name="input" value="">
+            <input class= "fName" type="text" name="input" value="">
         </label>
         <label> Nom
             <input class= "nom" type="text" name="output" value="">
         </label>
         <label> Adresse
-            <input class= "adresse" type="text" name="output" value="">
+            <input class= "address" type="text" name="output" value="">
         </label>
         <label> Ville
             <input class= "ville" type="text" name="output" value="">
         </label>
         <label> Adresse éléctronique
-            <input class= "email" type="text" name="output" value="adresse_electronique">
+            <input class= "email" type="text" name="output" value="">
         </label>
         <input type="button" name="bouton" value="Valider">
 `;
-let prenom = document.querySelector(".prenom");
-let nom = document.querySelector(".nom");
-let adresse = document.querySelector(".adresse");
+let fName = document.querySelector(".fName");
+let lName = document.querySelector(".nom");
+let address = document.querySelector(".address");
 let ville = document.querySelector(".ville");
-let adresseElectronique = document.querySelector(".email");
+let eMail = document.querySelector(".email");
 
 let contact = {
-    firstName: prenom.value,
-    lastName: nom.value,
-    address: adresse.value,
+    firstName: fName.value,
+    lastName: lName.value,
+    address: address.value,
     city: ville.value,
-    emailAddress: adresseElectronique.value
+    emailAddress: eMail.value
 }
 
 let products = ["product"];
