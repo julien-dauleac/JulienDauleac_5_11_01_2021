@@ -67,7 +67,7 @@ request.onreadystatechange = function() {
                 name: idSelection.name,
                 _id: idSelection._id,
                 lenses: selectOptions.value,
-                quantity: numberProduct.value,
+                quantity: Number(numberProduct.value),
                 price: idSelection.price /100
             }
             console.log(productBasket);
@@ -81,7 +81,16 @@ request.onreadystatechange = function() {
                 }
             }
             if(sendLocalStorage){
-                sendLocalStorage.push(productBasket);
+                let alreadyInBasket = false;
+                sendLocalStorage.forEach(product => {
+                    if(product._id === productBasket._id && product.lenses === productBasket.lenses){
+                        product.quantity += productBasket.quantity;
+                        alreadyInBasket = true;
+                    }
+                })
+                if(!alreadyInBasket){
+                   sendLocalStorage.push(productBasket);
+                }
                 localStorage.setItem("product", JSON.stringify(sendLocalStorage));
                 popupConfirmation();
             }

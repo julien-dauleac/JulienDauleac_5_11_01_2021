@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <link href="images/favicon.png" rel="shortcut icon" type="image/png"/>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="sass/main.css" rel="stylesheet"/>
 
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/a43780fc4a.js"></script>
@@ -43,7 +44,24 @@
     </div>
     <button id="btn_send" type="submit" name="btn_send" href="commande.html" >Validée la commande</button>
     <!-- Formulaire de validation de commande -->
-    <form id="customer" name="form"></form>
+    <form id="customer" name="form">
+        <label> Prénom
+            <input class= "fName" type="text" name="input" value="">
+        </label>
+        <label> Nom
+            <input class= "nom" type="text" name="output" value="">
+        </label>
+        <label> Adresse
+            <input class= "address" type="text" name="output" value="">
+        </label>
+        <label> Ville
+            <input class= "ville" type="text" name="output" value="">
+        </label>
+        <label> Adresse éléctronique
+            <input class= "email" type="text" name="output" value="">
+        </label>
+        <input type="button" name="bouton" value="Valider">
+    </form>
 </main>
 <footer>
     <div class="footer">

@@ -26,7 +26,6 @@ request.send();
 // Tableau des articles dans le panier //
 
 function basketList() {
-    let removeItem = localStorage.removeItem("product");
     let productBasket = '';
     basket.forEach(cameras =>
         productBasket += `
@@ -36,38 +35,22 @@ function basketList() {
         <td class="w-15 align-middle">${cameras.price}€</td>
         <td class="w-15 align-middle">${cameras.lenses}</td>
         <td class="w-15 align-middle">${cameras.quantity}</td>
-        <td class="w-15 align-middle">${removeItem}<a href="panier.html" class="btn btn-delete">Supprimer</a></td>
+        <td class="w-15 align-middle"><a href="panier.html" class="btn btn-delete">Supprimer</a></td>
         `
+
     )
     document.getElementById('allBasket').innerHTML = productBasket
 }
 
 // Formulaire Client //
 
-let customerForm = document.querySelector("#customer");
-customerForm.innerHTML = `
-        <label> Prénom
-            <input class= "fName" type="text" name="input" value="">
-        </label>
-        <label> Nom
-            <input class= "nom" type="text" name="output" value="">
-        </label>
-        <label> Adresse
-            <input class= "address" type="text" name="output" value="">
-        </label>
-        <label> Ville
-            <input class= "ville" type="text" name="output" value="">
-        </label>
-        <label> Adresse éléctronique
-            <input class= "email" type="text" name="output" value="">
-        </label>
-        <input type="button" name="bouton" value="Valider">
-`;
 let fName = document.querySelector(".fName");
 let lName = document.querySelector(".nom");
 let address = document.querySelector(".address");
 let ville = document.querySelector(".ville");
 let eMail = document.querySelector(".email");
+
+// Evenement de soumission ( addEventistener (submit)) //
 
 let contact = {
     firstName: fName.value,
