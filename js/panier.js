@@ -26,6 +26,7 @@ request.send();
 // Tableau des articles dans le panier //
 
 function basketList() {
+    let removeItem = localStorage.removeItem("product");
     let productBasket = '';
     basket.forEach(cameras =>
         productBasket += `
@@ -35,7 +36,7 @@ function basketList() {
         <td class="w-15 align-middle">${cameras.price}€</td>
         <td class="w-15 align-middle">${cameras.lenses}</td>
         <td class="w-15 align-middle">${cameras.quantity}</td>
-        <td class="w-15 align-middle"><a href="panier.html" class="btn btn-delete">Supprimer</a></td>
+        <td class="w-15 align-middle">${removeItem}<a href="panier.html" class="btn btn-delete">Supprimer</a></td>
         `
     )
     document.getElementById('allBasket').innerHTML = productBasket
