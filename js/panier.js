@@ -35,12 +35,27 @@ function basketList() {
         <td class="w-15 align-middle">${cameras.price}€</td>
         <td class="w-15 align-middle">${cameras.lenses}</td>
         <td class="w-15 align-middle">${cameras.quantity}</td>
-        <td class="w-15 align-middle"><a href="panier.html" class="btn btn-delete">Supprimer</a></td>
+        <td class="w-15 align-middle"><a onclick="deleteRow(this); return false;" href="panier.html" class="btn btn-delete">Supprimer l'article</a></td>
         `
-
     )
     document.getElementById('allBasket').innerHTML = productBasket
 }
+
+// Evenement de suppression de ligne dans le tableau //
+
+let deleteRow = function (link) {
+    let row = link.parentNode.parentNode;
+    let table = row.parentNode;
+    table.removeChild(row);
+}
+
+// Tableau du total du panier //
+
+
+
+// Fonction du prix total du panier //
+
+
 
 // Formulaire Client //
 
@@ -50,7 +65,7 @@ let address = document.querySelector(".address");
 let ville = document.querySelector(".ville");
 let eMail = document.querySelector(".email");
 
-// Evenement de soumission ( addEventistener (submit)) //
+// Evenement de soumission ( addeventlistener (submit)) //
 
 let contact = {
     firstName: fName.value,
@@ -62,7 +77,7 @@ let contact = {
 
 let products = ["product"];
 
-{
-    contact: contact;
-    products: products;
-}
+    {
+        contact: contact;
+        products: products;
+    }
