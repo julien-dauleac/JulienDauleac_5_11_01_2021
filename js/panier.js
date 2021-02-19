@@ -67,6 +67,11 @@ let eMail = document.querySelector(".email");
 
 // Evenement de soumission ( addeventlistener (submit)) //
 
+let requests = new XMLHttpRequest();
+requests.open("POST", 'http://localhost:3000/api/cameras/');
+requests.setRequestHeader("Content-Type", "application/json");
+requests.send(JSON.stringify(contact, products));
+
 let contact = {
     firstName: fName.value,
     lastName: lName.value,
@@ -75,9 +80,10 @@ let contact = {
     emailAddress: eMail.value
 }
 
-let products = ["product"];
+let products = ["_id"];
 
-    {
-        contact: contact;
-        products: products;
-    }
+{
+    contact: contact;
+    products: products;
+}
+
