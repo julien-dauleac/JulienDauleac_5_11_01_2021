@@ -67,11 +67,6 @@ let eMail = document.querySelector(".email");
 
 // Evenement de soumission ( addeventlistener (submit)) //
 
-let requests = new XMLHttpRequest();
-requests.open("POST", 'http://localhost:3000/api/cameras/');
-requests.setRequestHeader("Content-Type", "application/json");
-requests.send(JSON.stringify(contact, products));
-
 let contact = {
     firstName: fName.value,
     lastName: lName.value,
@@ -81,6 +76,42 @@ let contact = {
 }
 
 let products = ["_id"];
+
+window.addEventListener("load", function () {
+    function sendData() {
+
+        let XHR = new XMLHttpRequest();
+
+        // Liez l'objet FormData et l'élément form
+        let FD = new FormData(form);
+
+        // Définissez ce qui se passe si la soumission s'est opérée avec succès
+        XHR.addEventListener("load", function(event) {
+            alert(event.target.responseText);
+        });
+
+        // Definissez ce qui se passe en cas d'erreur
+        XHR.addEventListener("error", function(event) {
+            alert('Quelque chose s\'est mal passé.');
+        });
+
+        // Configurez la requête
+        XHR.open("POST", 'http://localhost:3000/api/cameras');
+
+        // Les données envoyées sont ce que l'utilisateur a mis dans le formulaire
+        XHR.send(FD);
+    }
+
+    // Accédez à l'élément form
+    let form = document.getElementsByClassName(".submit");
+
+    // Et prenez en charge l'événement submit.
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        sendData();
+    });
+});
 
 {
     contact: contact;
