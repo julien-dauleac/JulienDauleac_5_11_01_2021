@@ -57,14 +57,6 @@ let deleteRow = function (link) {
 
 
 
-// Formulaire Client //
-
-let fName = document.getElementById("firstname");
-let lName = document.getElementById("lastname");
-let address = document.getElementById("address");
-let ville = document.getElementById("city");
-let eMail = document.getElementById("email");
-
 // Tableau de renvoi API //
 
 let contact = {
@@ -83,14 +75,22 @@ let products = ["_id"];
 }
 
 // Evenement de soumission ( addeventlistener (onsubmit)) //
-
+let fName = document.getElementById("firstname");
+let lName = document.getElementById("lastname");
+let address = document.getElementById("address");
+let ville = document.getElementById("city");
+let eMail = document.getElementById("email");
 let validation = document.getElementById('bouton');
 let fNameM = document.getElementById('fNameM');
 let fNameV = /^[a-zA-Z][a-z]+([-'\s][a-zA-Z][a-z]+)?/;
-validation.addEventListener('click', f_valid);
+validation.addEventListener('click', fValid);
 
-function f_valid(e){
-    if (fNameV(fName.value) === false) {
+function fValid(e){
+    if (fName.validity.valueMissing) {
+        e.preventDefault();
+        fNameM.textContent = 'Prenom manquant';
+        fNameM.style.color = 'red';
+    }else if (fNameV.test(fName.value) === false) {
         e.preventDefault();
         fNameM.textContent = 'Format incorrect';
         fNameM.style.color = 'orange';
