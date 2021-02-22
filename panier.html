@@ -44,23 +44,24 @@
         </table>
     </div>
     <!-- Formulaire de validation de commande -->
-    <form id="customer" name="form">
+    <form action="commande.html" method="post">
         <label> Prénom
-            <input class= "fName" type="text" name="firstname" value="" required>
+            <input type="text" id="firstname" value="" required>
         </label>
+        <span id="firstnameM"></span><br>
         <label> Nom
-            <input class= "nom" type="text" name="lastname" value="" required>
+            <input type="text" id="lastname" value="" required>
         </label>
         <label> Adresse
-            <input class= "address" type="text" name="address" value="" required>
+            <input type="text" id="address" value="" required>
         </label>
         <label> Ville
-            <input class= "ville" type="text" name="city" value="" required>
+            <input type="text" id="city" value="" required>
         </label>
         <label> Adresse éléctronique
-            <input class= "email" type="email" name="email" value="" required>
+            <input type="email" id="email" value="" required>
         </label>
-        <input class="submit" type="submit" name="bouton" value="Soumettre">
+        <input type="submit" id="bouton" value="Soumettre">
     </form>
 </main>
 <footer>

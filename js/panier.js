@@ -59,13 +59,13 @@ let deleteRow = function (link) {
 
 // Formulaire Client //
 
-let fName = document.querySelector(".fName");
-let lName = document.querySelector(".nom");
-let address = document.querySelector(".address");
-let ville = document.querySelector(".ville");
-let eMail = document.querySelector(".email");
+let fName = document.getElementById("firstname");
+let lName = document.getElementById("lastname");
+let address = document.getElementById("address");
+let ville = document.getElementById("city");
+let eMail = document.getElementById("email");
 
-// Evenement de soumission ( addeventlistener (submit)) //
+// Tableau de renvoi API //
 
 let contact = {
     firstName: fName.value,
@@ -77,44 +77,25 @@ let contact = {
 
 let products = ["_id"];
 
-window.addEventListener("load", function () {
-    function sendData() {
-
-        let XHR = new XMLHttpRequest();
-
-        // Liez l'objet FormData et l'élément form
-        let FD = new FormData(form);
-
-        // Définissez ce qui se passe si la soumission s'est opérée avec succès
-        XHR.addEventListener("load", function(event) {
-            alert(event.target.responseText);
-        });
-
-        // Definissez ce qui se passe en cas d'erreur
-        XHR.addEventListener("error", function(event) {
-            alert('Quelque chose s\'est mal passé.');
-        });
-
-        // Configurez la requête
-        XHR.open("POST", 'http://localhost:3000/api/cameras');
-
-        // Les données envoyées sont ce que l'utilisateur a mis dans le formulaire
-        XHR.send(FD);
-    }
-
-    // Accédez à l'élément form
-    let form = document.getElementsByClassName(".submit");
-
-    // Et prenez en charge l'événement submit.
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        sendData();
-    });
-});
-
 {
     contact: contact;
     products: products;
+}
+
+// Evenement de soumission ( addeventlistener (onsubmit)) //
+
+let validation = document.getElementById('bouton');
+let fNameM = document.getElementById('fNameM');
+let fNameV = /^[a-zA-Z][a-z]+([-'\s][a-zA-Z][a-z]+)?/;
+validation.addEventListener('click', f_valid);
+
+function f_valid(e){
+    if (fNameV(fName.value) === false) {
+        e.preventDefault();
+        fNameM.textContent = 'Format incorrect';
+        fNameM.style.color = 'orange';
+    }else{
+
+    }
 }
 
