@@ -44,25 +44,64 @@
         </table>
     </div>
     <!-- Formulaire de validation de commande -->
-    <form action="commande.html" method="post">
-        <label> Prénom
-            <input type="text" id="firstname" value="" required>
-        </label>
-        <span id="fNameM"></span><br>
-        <label> Nom
-            <input type="text" id="lastname" value="" required>
-        </label>
-        <label> Adresse
-            <input type="text" id="address" value="" required>
-        </label>
-        <label> Ville
-            <input type="text" id="city" value="" required>
-        </label>
-        <label> Adresse éléctronique
-            <input type="email" id="email" value="" required>
-        </label>
-        <input type="submit" id="bouton" value="Soumettre">
-    </form>
+            <form action="commande.html" method="post" class="needs-validation" novalidate>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom01 firstname">Votre prenom</label>
+                        <input type="text" class="form-control" id="validationCustom01 firstname" placeholder="Prénom" value="" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom02 lastname">Votre nom</label>
+                        <input type="text" class="form-control" id="validationCustom02 lastname" placeholder="Nom" value="" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustomUsername email">Votre email</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                            </div>
+                            <input type="text" class="form-control" id="validationCustomUsername email" placeholder="Email" aria-describedby="inputGroupPrepend" required>
+                            <div class="invalid-feedback">
+                                Please choose a username.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationCustom03 address">Votre adresse</label>
+                        <input type="text" class="form-control" id="validationCustom03 address" placeholder="Adresse" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid city.
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationCustom04 city">Votre ville</label>
+                        <input type="text" class="form-control" id="validationCustom04 city" placeholder="Ville" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid state.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                        <label class="form-check-label" for="invalidCheck">
+                            Accepter les termes et conditions
+                        </label>
+                        <div class="invalid-feedback">
+                            You must agree before submitting.
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary bouton" type="submit">Soumettre le formulaire</button>
+            </form>
 </main>
 <footer>
     <div class="footer">

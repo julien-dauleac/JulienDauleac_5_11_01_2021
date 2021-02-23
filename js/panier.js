@@ -81,21 +81,23 @@ let address = document.getElementById("address");
 let ville = document.getElementById("city");
 let eMail = document.getElementById("email");
 let validation = document.getElementById('bouton');
-let fNameM = document.getElementById('fNameM');
-let fNameV = /^[a-zA-Z][a-z]+([-'\s][a-zA-Z][a-z]+)?/;
-validation.addEventListener('click', fValid);
 
-function fValid(e){
-    if (fName.validity.valueMissing) {
-        e.preventDefault();
-        fNameM.textContent = 'Prenom manquant';
-        fNameM.style.color = 'red';
-    }else if (fNameV.test(fName.value) === false) {
-        e.preventDefault();
-        fNameM.textContent = 'Format incorrect';
-        fNameM.style.color = 'orange';
-    }else{
-
-    }
+// Désactiver les soumissions de formulaires s'il y a des champs non valides
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    let forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    let validation = Array.prototype.filter.call(forms, function(form) {
+    form.addEventListener('submit', function(event) {
+    if (form.checkValidity() === false) {
+    event.preventDefault();
+    event.stopPropagation();
 }
+    form.classList.add('was-validated');
+}, false);
+});
+}, false);
+})();
 
