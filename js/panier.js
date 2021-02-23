@@ -59,6 +59,12 @@ let deleteRow = function (link) {
 
 // Tableau de renvoi API //
 
+let fName = document.getElementById("firstname");
+let lName = document.getElementById("lastname");
+let address = document.getElementById("address");
+let ville = document.getElementById("city");
+let eMail = document.getElementById("email");
+
 let contact = {
     firstName: fName.value,
     lastName: lName.value,
@@ -75,14 +81,7 @@ let products = ["_id"];
 }
 
 // Evenement de soumission ( addeventlistener (onsubmit)) //
-let fName = document.getElementById("firstname");
-let lName = document.getElementById("lastname");
-let address = document.getElementById("address");
-let ville = document.getElementById("city");
-let eMail = document.getElementById("email");
-let validation = document.getElementById('bouton');
 
-// Désactiver les soumissions de formulaires s'il y a des champs non valides
 (function() {
     'use strict';
     window.addEventListener('load', function() {
