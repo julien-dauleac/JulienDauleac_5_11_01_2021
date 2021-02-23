@@ -1,3 +1,5 @@
+
+
 function Product(picture, name, price, description, lenses){
     this.picture = picture;
     this.price = price;
@@ -11,7 +13,6 @@ let selectProduct = document.querySelector(".product_selection");
 
 // Call Ajax //
 
-let products = [];
 let request = new XMLHttpRequest();
 request.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
@@ -20,6 +21,7 @@ request.onreadystatechange = function() {
         let id = params.get('id');
         let idSelection = camera.find((element) => element._id === id);
         let productCamera = new Product (idSelection.imageUrl, idSelection.name, idSelection.price, idSelection.description, idSelection.lenses)
+        let products = [];
         products.push(productCamera);
         console.log(productCamera)
         selectProduct.innerHTML = `

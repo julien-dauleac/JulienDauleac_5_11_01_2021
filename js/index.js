@@ -7,7 +7,6 @@ function Product(picture, name, price, id){
 
 // Call Ajax //
 
-let products = [];
 let request = new XMLHttpRequest();
 request.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
@@ -24,7 +23,7 @@ request.open("GET", 'http://localhost:3000/api/cameras');
 request.send();
 
 // Tableau des articles //
-
+let products = [];
 function populateTableList() {
     let listOfProducts = '';
     products.forEach(prod =>

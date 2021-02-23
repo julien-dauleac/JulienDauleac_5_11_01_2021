@@ -1,3 +1,5 @@
+
+
 function Product(picture, name, price, lenses, quantity){
     this.picture = picture;
     this.price = price;
@@ -8,7 +10,6 @@ function Product(picture, name, price, lenses, quantity){
 
 // Call Ajax //
 
-let basket = [];
 let request = new XMLHttpRequest();
 request.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
@@ -24,7 +25,7 @@ request.open("GET", 'http://localhost:3000/api/cameras/');
 request.send();
 
 // Tableau des articles dans le panier //
-
+let basket = [];
 function basketList() {
     let productBasket = '';
     basket.forEach(cameras =>
