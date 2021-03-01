@@ -27,7 +27,7 @@ function basketList() {
         <td class="w-25 align-middle">${cameras.price}€</td>
         <td class="w-20 align-middle">${cameras.lenses}</td>
         <td class="w-20 align-middle">${cameras.quantity}</td>
-        <td class="w-20 align-middle"><a  class="btn btn-info delete">Supprimer l'article</a></td>
+        <td class="w-20 align-middle"><a class="btn btn-info delete">Supprimer l'article</a></td>
         `
     )
     document.getElementById('allBasket').innerHTML = productBasket
@@ -41,8 +41,8 @@ let delete_btn = document.querySelectorAll(".delete");
 for (let l = 0; l < delete_btn.length; l++){
     delete_btn[l].addEventListener("click" , (event) =>{
         event.preventDefault();
-    let productSelectionDelete = sendLocalStorage[l]._id;
-    sendLocalStorage = sendLocalStorage.filter(el => el._id !== productSelectionDelete);
+    let productSelectionDelete = sendLocalStorage[l].lenses;
+    sendLocalStorage = sendLocalStorage.filter(el => el.lenses !== productSelectionDelete);
     localStorage.setItem("product", JSON.stringify(sendLocalStorage));
     alert("Ce produit a bien été supprimer du panier");
     window.location.href = "panier.html";

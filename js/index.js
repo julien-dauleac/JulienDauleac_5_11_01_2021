@@ -7,22 +7,22 @@ function Product(picture, name, price, id){
 
 // Call Ajax //
 
-let request = new XMLHttpRequest();
-request.onreadystatechange = function() {
-    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-        let cameras = JSON.parse(this.responseText);
-        console.log(cameras);
-        cameras.forEach(camera =>{
-            let productCamera = new Product (camera.imageUrl, camera.name, camera.price, camera._id)
-            products.push(productCamera);
-        })
-        populateTableList()
-    }
-};
-request.open("GET", 'http://localhost:3000/api/cameras');
-request.send();
+fetch('http://localhost:3000/api/cameras')
+    .then((response) => {
+       const allCameras = response.json();
+       allCameras.then((cameras) => {
+           console.log(cameras);
+           cameras.forEach(camera =>{
+               let productCamera = new Product (camera.imageUrl, camera.name, camera.price, camera._id)
+               products.push(productCamera);
+               populateTableList()
+           })
+       })
+    })
+    .catch(error => alert("Erreur : " + error));
 
 // Tableau des articles //
+
 let products = [];
 function populateTableList() {
     let listOfProducts = '';
