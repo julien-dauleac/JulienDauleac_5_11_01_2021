@@ -1,5 +1,3 @@
-
-
 function Product(picture, name, price, lenses, quantity){
     this.picture = picture;
     this.price = price;
@@ -29,19 +27,26 @@ function basketList() {
         <td class="w-25 align-middle">${cameras.price}€</td>
         <td class="w-20 align-middle">${cameras.lenses}</td>
         <td class="w-20 align-middle">${cameras.quantity}</td>
-        <td class="w-20 align-middle"><a onclick="deleteRow(this); return false;" href="panier.html" class="btn btn-info">Supprimer l'article</a></td>
+        <td class="w-20 align-middle"><a  class="btn btn-info delete">Supprimer l'article</a></td>
         `
     )
     document.getElementById('allBasket').innerHTML = productBasket
+
 }
 
 // Evenement de suppression de ligne dans le tableau //
 
-let deleteRow = function (link) {
-    let row = link.parentNode.parentNode;
-    let table = row.parentNode;
-    table.removeChild(row);
-    // récupéré le tableau, le parcourir, trouver le même nom et la même lentille, une fois trouver la supprimer, et de nouveau réenregistré //
+let delete_btn = document.querySelectorAll(".delete");
+
+for (let l = 0; l < delete_btn.length; l++){
+    delete_btn[l].addEventListener("click" , (event) =>{
+        event.preventDefault();
+    let productSelectionDelete = sendLocalStorage[l]._id;
+    sendLocalStorage = sendLocalStorage.filter(el => el._id !== productSelectionDelete);
+    localStorage.setItem("product", JSON.stringify(sendLocalStorage));
+    alert("Ce produit a bien été supprimer du panier");
+    window.location.href = "panier.html";
+    })
 }
 
 // Tableau du total du panier //
@@ -63,7 +68,7 @@ let eMail = document.getElementById("email");
 
 let products = ["_id"]; // Parcourir le panier pour écrire les _id //
 
-// Evenement de soumission ( addeventlistener (onsubmit)) //
+// Evenement de soumission ( addeventlistener (onsubmit)) fetch post /order //
 
 (function() {
     'use strict';
