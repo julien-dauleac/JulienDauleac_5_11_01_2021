@@ -6,7 +6,8 @@ function Product(picture, name, price, lenses, quantity){
     this.quantity = quantity;
 }
 
-// Call Ajax //
+// Récupération des éléments pour le panier //
+
 let basket = [];
 let sendLocalStorage = JSON.parse(localStorage.getItem("product"));
   sendLocalStorage.forEach(sendLocalStorage =>{
@@ -31,7 +32,6 @@ function basketList() {
         `
     )
     document.getElementById('allBasket').innerHTML = productBasket
-
 }
 
 // Evenement de suppression de ligne dans le tableau //
@@ -65,8 +65,10 @@ let address = document.getElementById("address");
 let ville = document.getElementById("city");
 let eMail = document.getElementById("email");
 
+let _idBasket = document.querySelector("#allBasket");
+for (let m = 0; m < _idBasket.length; m++){
 
-let products = ["_id"]; // Parcourir le panier pour écrire les _id //
+} // Parcourir le panier pour écrire les _id //
 
 // Evenement de soumission ( addeventlistener (onsubmit)) fetch post /order //
 
@@ -86,9 +88,13 @@ let products = ["_id"]; // Parcourir le panier pour écrire les _id //
         }
         let table =
             {
-                contact: contact,
-                products: products
+                contacts: contact,
+                products: _idBasket
             }
+        fetch('http://localhost:3000/api/cameras/order', {
+            method: "POST",
+            body: JSON.stringify(table)
+        }).then(response => response.json()).then(json => console.log(json))
     if (form.checkValidity() === false) {
     event.stopPropagation();
 }

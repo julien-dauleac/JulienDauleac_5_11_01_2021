@@ -9,7 +9,7 @@ function Product(picture, name, price, description, lenses){
 
 let selectProduct = document.querySelector(".product_selection");
 
-// Call Ajax //
+// Call Fetch //
 
 let products = [];
 fetch('http://localhost:3000/api/cameras')

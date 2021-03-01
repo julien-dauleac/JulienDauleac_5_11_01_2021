@@ -5,7 +5,7 @@ function Product(picture, name, price, id){
     this.id = id;
 }
 
-// Call Ajax //
+// Call Fetch //
 
 fetch('http://localhost:3000/api/cameras')
     .then((response) => {
