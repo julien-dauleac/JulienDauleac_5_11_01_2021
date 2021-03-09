@@ -120,10 +120,17 @@ for (let m = 0; m < _idBasket.length; m++){
                 contacts: contact,
                 products: _idBasket
             }
-        fetch('http://localhost:3000/api/cameras/order', {
+        fetch('http://localhost:3000/api/order', {
             method: "POST",
-            body: JSON.stringify({table})
-        }).then(response => response.json()).then(json => console.log(json))
+            body: JSON.stringify({table}),
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+            },
+        }).then(async response => await response.json()).then(json => console.log(json))
+          .catch(event)
+           console.log(event);
+
     if (form.checkValidity() === false) {
     event.stopPropagation();
 }
