@@ -26,6 +26,9 @@ fetch('http://localhost:3000/api/cameras')
             let productCamera = new Product (idSelection.imageUrl, idSelection.name, idSelection.price, idSelection.description, idSelection.lenses)
             products.push(productCamera);
             console.log(productCamera)
+
+            // Injecteur le tableau html dans la page produit //
+
             selectProduct.innerHTML = `
  <div class="page_product">
     <div class="product_picture">

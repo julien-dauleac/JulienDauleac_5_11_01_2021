@@ -8,7 +8,7 @@ function Product(picture, name, price, lenses, quantity){
     this.quantity = quantity;
 }
 
-// Récupération des éléments pour le panier //
+// Récupération des éléments du local storage pour le panier //
 
 let basket = [];
 let sendLocalStorage = JSON.parse(localStorage.getItem("product"));
@@ -96,10 +96,12 @@ let address = document.getElementById("address");
 let ville = document.getElementById("city");
 let eMail = document.getElementById("email");
 
+// Parcourir le panier pour les _id //
+
 let _idBasket = document.querySelector("#allBasket");
 for (let m = 0; m < _idBasket.length; m++){
 
-} // Parcourir le panier pour les _id //
+}
 
 // Evenement de soumission ( addeventlistener (onsubmit)) fetch post /order //
 
