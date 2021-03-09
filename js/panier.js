@@ -1,3 +1,5 @@
+// Fonction affichage des produits panier //
+
 function Product(picture, name, price, lenses, quantity){
     this.picture = picture;
     this.price = price;
@@ -78,7 +80,6 @@ for (let n = 0; n < sendLocalStorage.length; n++){
 
 const reducer = (accumulator, currentValue) => accumulator + currentValue
 const totalBaskets = totalBasket.reduce(reducer,0);
-console.log(totalBaskets);
 
 // Code HTML du "afficher total" //
 
@@ -125,8 +126,7 @@ for (let m = 0; m < _idBasket.length; m++){
             body: JSON.stringify({table}),
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-            },
+            }
         }).then(async response => await response.json()).then(json => console.log(json))
           .catch(event)
            console.log(event);

@@ -1,3 +1,5 @@
+// Fonction affichage des produits accueil //
+
 function Product(picture, name, price, id){
     this.picture = picture;
     this.name = name;

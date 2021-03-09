@@ -1,3 +1,5 @@
+// Fonction affichage des produits //
+
 function Product(picture, name, price, description, lenses){
     this.picture = picture;
     this.price = price;
@@ -5,6 +7,7 @@ function Product(picture, name, price, description, lenses){
     this.description = description;
     this.lenses = lenses;
 }
+
 // Injecter html dans la page produit //
 
 let selectProduct = document.querySelector(".product_selection");
@@ -52,6 +55,8 @@ fetch('http://localhost:3000/api/cameras')
     </div>
     </div>
 `;
+            // Boucle pour les différentes options //
+
             let selectOptions = document.querySelector("#option_produit");
             let options = idSelection.lenses;
             for (let i = 0; i < options.length; i++) {
@@ -59,6 +64,9 @@ fetch('http://localhost:3000/api/cameras')
             <option value="${options[i]}">${options[i]}</option>
             `;
             }
+
+            // Fonction et bouton d'envoi des articles dans le local storage //
+
             let numberProduct = document.querySelector("#number_produit");
             let sendBasket = document.querySelector("#btn_send");
             sendBasket.addEventListener("click", (event)=>{
@@ -73,6 +81,9 @@ fetch('http://localhost:3000/api/cameras')
                 }
                 console.log(productBasket);
                 let sendLocalStorage = JSON.parse(localStorage.getItem("product"));
+
+                // Popup de confirmation d'ajout des articles dans le panier //
+
                 let popupConfirmation = () =>{
                     if(window.confirm(`${idSelection.name} option: ${selectOptions.value} a bien été ajouté au panier
             Consultez le panier OK ou revenir a l'accueil ANNULER`)){
@@ -81,6 +92,9 @@ fetch('http://localhost:3000/api/cameras')
                         window.location.href = "index.html";
                     }
                 }
+
+                // Fonction de modification du panier en ajoutant +1 si même article ajouté //
+
                 if(sendLocalStorage){
                     let alreadyInBasket = false;
                     sendLocalStorage.forEach(product => {
