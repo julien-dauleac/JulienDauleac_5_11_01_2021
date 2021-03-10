@@ -38,10 +38,10 @@ function basketList() {
 
 // Evenement de suppression de ligne dans le tableau //
 
-let delete_btn = document.querySelectorAll(".delete");
+let deleteButton = document.querySelectorAll(".delete");
 
-for (let l = 0; l < delete_btn.length; l++){
-    delete_btn[l].addEventListener('click' , (event) =>{
+for (let l = 0; l < deleteButton.length; l++){
+    deleteButton[l].addEventListener('click' , (event) =>{
         event.preventDefault();
     let productSelectionDelete = sendLocalStorage[l];
     sendLocalStorage = sendLocalStorage.filter(el => el.lenses !== productSelectionDelete.lenses || el._id !== productSelectionDelete._id);
@@ -53,14 +53,14 @@ for (let l = 0; l < delete_btn.length; l++){
 
 // Bouton pour vider le panier //
 
-let btnDeleteBasket = document.querySelector(".btn_delete_basket");
-btnDeleteBasket.innerHTML = `
+let buttonDeleteBasket = document.querySelector(".btn_delete_basket");
+buttonDeleteBasket.innerHTML = `
 <td class="w-20 align-middle"><a class="btn btn-info delete_basket">Vider le panier</a></td>
 `;
 
 // Suppression de la key produit dans le local storage pour vider le panier //
 
-btnDeleteBasket.addEventListener('click', (e)=>{
+buttonDeleteBasket.addEventListener('click', (e)=>{
     e.preventDefault();
     // Méthode .removeItem //
     localStorage.removeItem('product');
@@ -125,7 +125,7 @@ for (let m = 0; m < _idBasket.length; m++){
             }
         fetch('http://localhost:3000/api/order', {
             method: "POST",
-            body: JSON.stringify({table}),
+            body: JSON.stringify(table),
             headers: {
                 "Content-Type": "application/json",
             }
