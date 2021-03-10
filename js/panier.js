@@ -68,12 +68,17 @@ buttonDeleteBasket.addEventListener('click', (e)=>{
     window.location.href = "panier.html";
 });
 
+// Parcourir le panier pour les _id //
+
+let _idBasket = [];
+
 // Fonction du prix total du panier //
 
 let totalBasket = [];
 for (let n = 0; n < sendLocalStorage.length; n++){
     let priceBasket = sendLocalStorage[n].price * sendLocalStorage[n].quantity;
     totalBasket.push(priceBasket)
+    _idBasket.push(sendLocalStorage[n]._id)
 }
 
 // Addition des prix des articles du panier avec la méthode .reducer //
@@ -96,12 +101,6 @@ let address = document.getElementById("address");
 let ville = document.getElementById("city");
 let eMail = document.getElementById("email");
 
-// Parcourir le panier pour les _id //
-
-let _idBasket = document.querySelector("#allBasket");
-for (let m = 0; m < _idBasket.length; m++){
-
-}
 
 // Evenement de soumission ( addeventlistener (onsubmit)) fetch post /order //
 
@@ -117,10 +116,10 @@ for (let m = 0; m < _idBasket.length; m++){
             lastName: lName.value,
             address: address.value,
             city: ville.value,
-            emailAddress: eMail.value
+            email: eMail.value
         }
         let table = {
-                contacts: contact,
+                contact: contact,
                 products: _idBasket
             }
         fetch('http://localhost:3000/api/order', {
@@ -129,9 +128,8 @@ for (let m = 0; m < _idBasket.length; m++){
             headers: {
                 "Content-Type": "application/json",
             }
-        }).then(async response => await response.json()).then(json => console.log(json))
-          .catch(event)
-           console.log(event);
+        }).then(response => response.json()).then(json => console.log(json))
+          .catch(error =>{console.log(error);})
 
     if (form.checkValidity() === false) {
     event.stopPropagation();
