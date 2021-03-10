@@ -122,7 +122,7 @@ let eMail = document.getElementById("email");
                 contact: contact,
                 products: _idBasket
             }
-        fetch('http://localhost:3000/api/order', {
+        fetch('http://localhost:3000/api/cameras/order', {
             method: "POST",
             body: JSON.stringify(table),
             headers: {
