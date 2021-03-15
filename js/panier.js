@@ -100,6 +100,7 @@ let priceHtml = document.querySelector(".cart_price");
 priceHtml.innerHTML = `
  <td class ="w-25 align-middle"> Le prix total est de : ${totalBaskets} € </td>
 `;
+localStorage.setItem("totalBasket", JSON.stringify(totalBaskets))
 
 // Tableau de renvoi API //
 
@@ -136,8 +137,9 @@ let eMail = document.getElementById("email");
             headers: {
                 "Content-Type": "application/json",
             }
-        }).then(response => response.json()).then(json => console.log(json))
+        }).then(response => response.json()).then(json => localStorage.setItem("returnAPI", JSON.stringify(json)))
           .catch(error =>{console.log(error);})
+        window.location.href = "confirmation.html";
     if (form.checkValidity() === false) {
     event.stopPropagation();
 }
@@ -147,6 +149,4 @@ let eMail = document.getElementById("email");
 }, false);
 })();
 
-// Envoyer le retour de l'API dans le local storage pour pouvoir l'afficher plus tard dans la page de confirmation //
 
-localStorage.setItem("returnAPI", response);
