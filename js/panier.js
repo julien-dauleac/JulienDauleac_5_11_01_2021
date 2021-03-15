@@ -12,10 +12,12 @@ function Product(picture, name, price, lenses, quantity){
 
 let basket = [];
 let sendLocalStorage = JSON.parse(localStorage.getItem("product"));
-  sendLocalStorage.forEach(sendLocalStorage =>{
+if (sendLocalStorage === null || sendLocalStorage === 0) {
+    document.getElementsByClassName('container-panier-vide').innerHTML = ''
+} else { sendLocalStorage.forEach(sendLocalStorage =>{
     let productsBasket = new Product (sendLocalStorage.picture, sendLocalStorage.name, sendLocalStorage.price, sendLocalStorage.lenses, sendLocalStorage.quantity)
             basket.push(productsBasket);
-        })
+        })}
         basketList()
 
 // Tableau des articles dans le panier //
@@ -54,9 +56,12 @@ for (let l = 0; l < deleteButton.length; l++){
 // Bouton pour vider le panier //
 
 let buttonDeleteBasket = document.querySelector(".btn_delete_basket");
+if (sendLocalStorage === null || sendLocalStorage === 0) {
+
+} else {
 buttonDeleteBasket.innerHTML = `
 <td class="w-20 align-middle"><a class="btn btn-info delete_basket">Vider le panier</a></td>
-`;
+`;}
 
 // Suppression de la key produit dans le local storage pour vider le panier //
 
@@ -75,11 +80,14 @@ let _idBasket = [];
 // Fonction du prix total du panier //
 
 let totalBasket = [];
+if (sendLocalStorage === null || sendLocalStorage === 0) {
+
+} else {
 for (let n = 0; n < sendLocalStorage.length; n++){
     let priceBasket = sendLocalStorage[n].price * sendLocalStorage[n].quantity;
     totalBasket.push(priceBasket)
     _idBasket.push(sendLocalStorage[n]._id)
-}
+}}
 
 // Addition des prix des articles du panier avec la méthode .reducer //
 
@@ -130,7 +138,6 @@ let eMail = document.getElementById("email");
             }
         }).then(response => response.json()).then(json => console.log(json))
           .catch(error =>{console.log(error);})
-
     if (form.checkValidity() === false) {
     event.stopPropagation();
 }
@@ -140,3 +147,6 @@ let eMail = document.getElementById("email");
 }, false);
 })();
 
+// Envoyer le retour de l'API dans le local storage pour pouvoir l'afficher plus tard dans la page de confirmation //
+
+localStorage.setItem("returnAPI", response);
