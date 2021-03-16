@@ -77,6 +77,12 @@
   list-style: none;
 }
 
+.confirmation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .needs-validation {
   display: flex;
   flex-direction: column;

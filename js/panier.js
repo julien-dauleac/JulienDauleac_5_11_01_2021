@@ -76,6 +76,12 @@ buttonDeleteBasket.addEventListener('click', (e)=>{
 // Parcourir le panier pour les _id //
 
 let _idBasket = [];
+//let set = localStorage.setItem('key', 'value');
+//let element = document.getElementById('tagId');
+
+//for ( let i = 0, len = localStorage.length; i < len; ++i ) {
+  //  element.innerHTML =  localStorage.getItem(localStorage.key(i)) + localStorage.key(i).length;
+//}
 
 // Fonction du prix total du panier //
 
@@ -139,9 +145,9 @@ let eMail = document.getElementById("email");
             }
         }).then(response => response.json()).then(json => localStorage.setItem("returnAPI", JSON.stringify(json)))
           .catch(error =>{console.log(error);})
-        window.location.href = "confirmation.html";
     if (form.checkValidity() === false) {
     event.stopPropagation();
+        window.location.href = "confirmation.html";
 }
     form.classList.add('was-validated');
 }, false);

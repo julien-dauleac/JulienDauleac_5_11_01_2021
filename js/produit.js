@@ -8,7 +8,7 @@ function Product(picture, name, price, description, lenses){
     this.lenses = lenses;
 }
 
-// Injecter html dans la page produit //
+// Injecter le html dans la page produit //
 
 let selectProduct = document.querySelector(".product_selection");
 
@@ -19,7 +19,6 @@ fetch('http://localhost:3000/api/cameras')
     .then((response) => {
         const allCameras = response.json();
         allCameras.then((camera) => {
-            console.log(camera);
             let params = new URLSearchParams(window.location.search);
             let id = params.get('id');
             let idSelection = camera.find((element) => element._id === id);
@@ -27,7 +26,7 @@ fetch('http://localhost:3000/api/cameras')
             products.push(productCamera);
             console.log(productCamera)
 
-            // Injecteur le tableau html dans la page produit //
+            // Injecter le tableau html dans la page produit //
 
             selectProduct.innerHTML = `
  <div class="page_product">
