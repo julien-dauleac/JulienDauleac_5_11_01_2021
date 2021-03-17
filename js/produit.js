@@ -118,6 +118,6 @@ fetch('http://localhost:3000/api/cameras')
                     popupConfirmation();
                 }
             });
-            })
         })
+    })
     .catch(error => alert("Erreur : " + error));

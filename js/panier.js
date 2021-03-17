@@ -16,9 +16,9 @@ if (sendLocalStorage === null || sendLocalStorage === 0) {
     document.getElementsByClassName('container-panier-vide').innerHTML = ''
 } else { sendLocalStorage.forEach(sendLocalStorage =>{
     let productsBasket = new Product (sendLocalStorage.picture, sendLocalStorage.name, sendLocalStorage.price, sendLocalStorage.lenses, sendLocalStorage.quantity)
-            basket.push(productsBasket);
-        })}
-        basketList()
+    basket.push(productsBasket);
+})}
+basketList()
 
 // Tableau des articles dans le panier //
 
@@ -45,11 +45,11 @@ let deleteButton = document.querySelectorAll(".delete");
 for (let l = 0; l < deleteButton.length; l++){
     deleteButton[l].addEventListener('click' , (event) =>{
         event.preventDefault();
-    let productSelectionDelete = sendLocalStorage[l];
-    sendLocalStorage = sendLocalStorage.filter(el => el.lenses !== productSelectionDelete.lenses || el._id !== productSelectionDelete._id);
-    localStorage.setItem("product", JSON.stringify(sendLocalStorage));
-    alert("Ce produit a bien été supprimer du panier");
-    window.location.href = "panier.html";
+        let productSelectionDelete = sendLocalStorage[l];
+        sendLocalStorage = sendLocalStorage.filter(el => el.lenses !== productSelectionDelete.lenses || el._id !== productSelectionDelete._id);
+        localStorage.setItem("product", JSON.stringify(sendLocalStorage));
+        alert("Ce produit a bien été supprimer du panier");
+        window.location.href = "panier.html";
     })
 }
 
@@ -59,7 +59,7 @@ let buttonDeleteBasket = document.querySelector(".btn_delete_basket");
 if (sendLocalStorage === null || sendLocalStorage === 0) {
 
 } else {
-buttonDeleteBasket.innerHTML = `
+    buttonDeleteBasket.innerHTML = `
 <td class="w-20 align-middle"><a class="btn btn-info delete_basket">Vider le panier</a></td>
 `;}
 
@@ -76,12 +76,6 @@ buttonDeleteBasket.addEventListener('click', (e)=>{
 // Parcourir le panier pour les _id //
 
 let _idBasket = [];
-//let set = localStorage.setItem('key', 'value');
-//let element = document.getElementById('tagId');
-
-//for ( let i = 0, len = localStorage.length; i < len; ++i ) {
-  //  element.innerHTML =  localStorage.getItem(localStorage.key(i)) + localStorage.key(i).length;
-//}
 
 // Fonction du prix total du panier //
 
@@ -89,11 +83,13 @@ let totalBasket = [];
 if (sendLocalStorage === null || sendLocalStorage === 0) {
 
 } else {
-for (let n = 0; n < sendLocalStorage.length; n++){
-    let priceBasket = sendLocalStorage[n].price * sendLocalStorage[n].quantity;
-    totalBasket.push(priceBasket)
-    _idBasket.push(sendLocalStorage[n]._id)
-}}
+    for (let n = 0; n < sendLocalStorage.length; n++){
+        let priceBasket = sendLocalStorage[n].price * sendLocalStorage[n].quantity;
+        totalBasket.push(priceBasket)
+        for (let i = 0; i < sendLocalStorage[n].quantity; i++){
+            _idBasket.push(sendLocalStorage[n]._id)
+        }
+    }}
 
 // Addition des prix des articles du panier avec la méthode .reducer //
 
@@ -119,13 +115,11 @@ let eMail = document.getElementById("email");
 
 // Evenement de soumission ( addeventlistener (onsubmit)) fetch post /order //
 
-(function() {
-    'use strict';
-    window.addEventListener('load', function() {
-    let forms = document.getElementsByClassName('needs-validation');
-    let validation = Array.prototype.filter.call(forms, function(form) {
-    form.addEventListener('submit', function(event) {
+let form = document.getElementsByClassName('needs-validation')[0];
+form.addEventListener('submit', function(event) {
     event.preventDefault();
+    form.classList.add('was-validated');
+    if (form.checkValidity()){
         let contact = {
             firstName: fName.value,
             lastName: lName.value,
@@ -134,25 +128,21 @@ let eMail = document.getElementById("email");
             email: eMail.value
         }
         let table = {
-                contact: contact,
-                products: _idBasket
-            }
+            contact: contact,
+            products: _idBasket
+        }
         fetch('http://localhost:3000/api/cameras/order', {
             method: "POST",
             body: JSON.stringify(table),
             headers: {
                 "Content-Type": "application/json",
             }
-        }).then(response => response.json()).then(json => localStorage.setItem("returnAPI", JSON.stringify(json)))
-          .catch(error =>{console.log(error);})
-    if (form.checkValidity() === false) {
-    event.stopPropagation();
-        window.location.href = "confirmation.html";
-}
-    form.classList.add('was-validated');
-}, false);
+        }).then(response => response.json()).then(json => {
+            localStorage.setItem("returnAPI", JSON.stringify(json))
+            window.location.href = "confirmation.html";
+        })
+            .catch(error =>{console.log(error);})
+    }
 });
-}, false);
-})();
 
 
