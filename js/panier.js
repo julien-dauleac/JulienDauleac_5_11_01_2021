@@ -104,45 +104,60 @@ priceHtml.innerHTML = `
 `;
 localStorage.setItem("totalBasket", JSON.stringify(totalBaskets))
 
-// Tableau de renvoi API //
+// Formulaire à envoyer a l'API + Gestion de la validation du formulaire //
 
 let fName = document.getElementById("firstname");
-let lName = document.getElementById("lastname");
-let address = document.getElementById("address");
-let ville = document.getElementById("city");
-let eMail = document.getElementById("email");
+if (/^[A-Za-z]{3,20}$/.test(fName)) {
+} else {
+}
 
+let lName = document.getElementById("lastname");
+if (/^[A-Za-z]$/.test(lName)) {
+} else {
+}
+
+let address = document.getElementById("address");
+
+let ville = document.getElementById("city");
+if (/^[A-Za-z]$/.test(ville)) {
+} else {
+}
+
+let eMail = document.getElementById("email");
 
 // Evenement de soumission ( addeventlistener (onsubmit)) fetch post /order //
 
 let form = document.getElementsByClassName('needs-validation')[0];
-form.addEventListener('submit', function(event) {
-    event.preventDefault();
-    form.classList.add('was-validated');
-    if (form.checkValidity()){
-        let contact = {
-            firstName: fName.value,
-            lastName: lName.value,
-            address: address.value,
-            city: ville.value,
-            email: eMail.value
-        }
-        let table = {
-            contact: contact,
-            products: _idBasket
-        }
-        fetch('http://localhost:3000/api/cameras/order', {
-            method: "POST",
-            body: JSON.stringify(table),
-            headers: {
-                "Content-Type": "application/json",
+if(sendLocalStorage === null || sendLocalStorage === 0){
+    form.innerHTML = ``
+} else {
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        form.classList.add('was-validated');
+        if (form.checkValidity()){
+            let contact = {
+                firstName: fName.value,
+                lastName: lName.value,
+                address: address.value,
+                city: ville.value,
+                email: eMail.value
             }
-        }).then(response => response.json()).then(json => {
-            localStorage.setItem("returnAPI", JSON.stringify(json))
-            window.location.href = "confirmation.html";
-        })
-            .catch(error =>{console.log(error);})
-    }
-});
+            let table = {
+                contact: contact,
+                products: _idBasket
+            }
+            fetch('http://localhost:3000/api/cameras/order', {
+                method: "POST",
+                body: JSON.stringify(table),
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            }).then(response => response.json()).then(json => {
+                localStorage.setItem("returnAPI", JSON.stringify(json))
+                //window.location.href = "confirmation.html";
+            })
+                .catch(error =>{console.log(error);})
+        }
+    });}
 
 
