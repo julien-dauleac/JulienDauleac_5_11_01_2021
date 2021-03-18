@@ -38,23 +38,25 @@ function basketList() {
     document.getElementById('allBasket').innerHTML = productBasket
 }
 
-// Evenement de suppression de ligne dans le tableau //
+// Fonction de suppression de ligne dans le tableau //
 
-let deleteButton = document.querySelectorAll(".delete");
+function Delete(){
+    let deleteButton = document.querySelectorAll(".delete");
 
-for (let l = 0; l < deleteButton.length; l++){
-    deleteButton[l].addEventListener('click' , (event) =>{
-        event.preventDefault();
-        let productSelectionDelete = sendLocalStorage[l];
-        sendLocalStorage = sendLocalStorage.filter(el => el.lenses !== productSelectionDelete.lenses || el._id !== productSelectionDelete._id);
-        localStorage.setItem("product", JSON.stringify(sendLocalStorage));
-        alert("Ce produit a bien été supprimer du panier");
-        window.location.href = "panier.html";
-    })
-}
+    for (let l = 0; l < deleteButton.length; l++){
+        deleteButton[l].addEventListener('click' , (event) =>{
+            event.preventDefault();
+            let productSelectionDelete = sendLocalStorage[l];
+            sendLocalStorage = sendLocalStorage.filter(el => el.lenses !== productSelectionDelete.lenses || el._id !== productSelectionDelete._id);
+            localStorage.setItem("product", JSON.stringify(sendLocalStorage));
+            alert("Ce produit a bien été supprimer du panier");
+            window.location.href = "panier.html";
+        })
+    }}
 
-// Bouton pour vider le panier //
+// Fonction pour vider le panier //
 
+function DeleteBasket(){}
 let buttonDeleteBasket = document.querySelector(".btn_delete_basket");
 if (sendLocalStorage === null || sendLocalStorage === 0) {
 
@@ -154,7 +156,7 @@ if(sendLocalStorage === null || sendLocalStorage === 0){
                 }
             }).then(response => response.json()).then(json => {
                 localStorage.setItem("returnAPI", JSON.stringify(json))
-                //window.location.href = "confirmation.html";
+                window.location.href = "confirmation.html";
             })
                 .catch(error =>{console.log(error);})
         }

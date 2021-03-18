@@ -47,7 +47,7 @@ fetch('http://localhost:3000/api/cameras')
     </form>
     <form>
      <label for="number_produit">Choisir la quantitée : </label>
-     <select name="number_produit" id="number_produit">
+     <select name="number_produit" id="number_product">
      <option value="1">1</option>
      <option value="2">2</option>
      <option value="3">3</option>
@@ -57,67 +57,74 @@ fetch('http://localhost:3000/api/cameras')
     </div>
     </div>
 `;
+
             // Boucle pour les différentes options //
 
-            let selectOptions = document.querySelector("#option_produit");
-            let options = idSelection.lenses;
-            for (let i = 0; i < options.length; i++) {
-                selectOptions.innerHTML += `
+            function Option(){
+                let selectOptions = document.querySelector("#option_produit");
+                let options = idSelection.lenses;
+                for (let i = 0; i < options.length; i++) {
+                    selectOptions.innerHTML += `
             <option value="${options[i]}">${options[i]}</option>
             `;
+                }
             }
+
 
             // Fonction et bouton d'envoi des articles dans le local storage //
 
-            let numberProduct = document.querySelector("#number_produit");
-            let sendBasket = document.querySelector("#btn_send");
-            sendBasket.addEventListener("click", (event)=>{
-                event.preventDefault()
-                let productBasket = {
-                    picture: idSelection.imageUrl,
-                    name: idSelection.name,
-                    _id: idSelection._id,
-                    lenses: selectOptions.value,
-                    quantity: Number(numberProduct.value),
-                    price: idSelection.price /100
-                }
-                console.log(productBasket);
-                let sendLocalStorage = JSON.parse(localStorage.getItem("product"));
-
-                // Popup de confirmation d'ajout des articles dans le panier //
-
-                let popupConfirmation = () =>{
-                    if(window.confirm(`${idSelection.name} option: ${selectOptions.value} a bien été ajouté au panier
-            Consultez le panier OK ou revenir a l'accueil ANNULER`)){
-                        window.location.href = "panier.html";
-                    }else{
-                        window.location.href = "index.html";
+            function Send() {
+                let numberProduct = document.querySelector("#number_product");
+                let sendBasket = document.querySelector("#btn_send");
+                sendBasket.addEventListener("click", (event)=> {
+                    event.preventDefault()
+                    let productBasket = {
+                        picture: idSelection.imageUrl,
+                        name: idSelection.name,
+                        _id: idSelection._id,
+                        lenses: Option.value,
+                        quantity: Number(numberProduct.value),
+                        price: idSelection.price / 100
                     }
-                }
+                    console.log(productBasket);
+                    function sendLocalStorage(){
+                        return JSON.parse(localStorage.getItem("product"));
+                    }
 
-                // Fonction de modification du panier en ajoutant +1 si même article ajouté //
+                    // Popup de confirmation d'ajout des articles dans le panier //
 
-                if(sendLocalStorage){
-                    let alreadyInBasket = false;
-                    sendLocalStorage.forEach(product => {
-                        if(product._id === productBasket._id && product.lenses === productBasket.lenses){
-                            product.quantity += productBasket.quantity;
-                            alreadyInBasket = true;
+                    let popupConfirmation = () =>{
+                        if(window.confirm(`${idSelection.name} option: ${Option.value} a bien été ajouté au panier
+                    Consultez le panier OK ou revenir a l'accueil ANNULER`)){
+                            window.location.href = "panier.html";
+                        }else{
+                            window.location.href = "index.html";
                         }
-                    })
-                    if(!alreadyInBasket){
-                        sendLocalStorage.push(productBasket);
                     }
-                    localStorage.setItem("product", JSON.stringify(sendLocalStorage));
-                    popupConfirmation();
-                }
-                else {
-                    sendLocalStorage = [];
-                    sendLocalStorage.push(productBasket);
-                    localStorage.setItem("product", JSON.stringify(sendLocalStorage));
-                    popupConfirmation();
-                }
-            });
+
+                    // Fonction de modification du panier en ajoutant +1 si même article ajouté //
+
+                    if(sendLocalStorage){
+                        let alreadyInBasket = false;
+                        sendLocalStorage.forEach(product => {
+                            if(product._id === productBasket._id && product.lenses === productBasket.lenses){
+                                product.quantity += productBasket.quantity;
+                                alreadyInBasket = true;
+                            }
+                        })
+                        if(!alreadyInBasket){
+                            sendLocalStorage.push(productBasket);
+                        }
+                        localStorage.setItem("product", JSON.stringify(sendLocalStorage));
+                        popupConfirmation();
+                    }
+                    else {
+                        sendLocalStorage = [];
+                        sendLocalStorage.push(productBasket);
+                        localStorage.setItem("product", JSON.stringify(sendLocalStorage));
+                        popupConfirmation();
+                    }
+                });}
         })
     })
     .catch(error => alert("Erreur : " + error));

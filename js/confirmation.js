@@ -13,4 +13,5 @@ confirmation.innerHTML = `
 <p> Le total de votre commande est de : <strong> ${priceTotal}€ </strong></p>
 <p> Le numéro de la commande est le : <strong> ${returnApi.orderId} </strong></p>
 `
+
 localStorage.clear();
