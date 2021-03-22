@@ -40,18 +40,18 @@ function basketList() {
 
 // Fonction de suppression de ligne dans le tableau //
 
-    let deleteButton = document.querySelectorAll(".delete");
+let deleteButton = document.querySelectorAll(".delete");
 
-    for (let l = 0; l < deleteButton.length; l++){
-        deleteButton[l].addEventListener('click' , (event) =>{
-            event.preventDefault();
-            let productSelectionDelete = sendLocalStorage[l];
-            sendLocalStorage = sendLocalStorage.filter(el => el.lenses !== productSelectionDelete.lenses || el._id !== productSelectionDelete._id);
-            localStorage.setItem("product", JSON.stringify(sendLocalStorage));
-            alert("Ce produit a bien été supprimer du panier");
-            window.location.href = "panier.html";
-        })
-    }
+for (let l = 0; l < deleteButton.length; l++){
+    deleteButton[l].addEventListener('click' , (event) =>{
+        event.preventDefault();
+        let productSelectionDelete = sendLocalStorage[l];
+        sendLocalStorage = sendLocalStorage.filter(el => el.lenses !== productSelectionDelete.lenses || el._id !== productSelectionDelete._id);
+        localStorage.setItem("product", JSON.stringify(sendLocalStorage));
+        alert("Ce produit a bien été supprimer du panier");
+        window.location.href = "panier.html";
+    })
+}
 
 // Fonction pour vider le panier //
 
@@ -115,7 +115,7 @@ let eMail = document.getElementById("email");
 // Gestion de la validation du formulaire //
 
 const textAlertName = (value) => {
- return `${value} : Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères, minimum 3 caractères`;
+    return `${value} : Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères, minimum 3 caractères`;
 }
 
 const regEx = (value) => {
