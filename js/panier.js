@@ -168,7 +168,7 @@ function emailControl() {
     }
 }
 
-// Evenement de soumission ( addeventlistener (onsubmit)) fetch post /order //
+// Evenement de soumission ( addeventlistener (onsubmit)) fetch post //
 
 let form = document.getElementsByClassName('needs-validation')[0];
 if(sendLocalStorage === null || sendLocalStorage === 0){
