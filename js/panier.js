@@ -40,7 +40,6 @@ function basketList() {
 
 // Fonction de suppression de ligne dans le tableau //
 
-function Delete(){
     let deleteButton = document.querySelectorAll(".delete");
 
     for (let l = 0; l < deleteButton.length; l++){
@@ -52,11 +51,10 @@ function Delete(){
             alert("Ce produit a bien été supprimer du panier");
             window.location.href = "panier.html";
         })
-    }}
+    }
 
 // Fonction pour vider le panier //
 
-function DeleteBasket(){}
 let buttonDeleteBasket = document.querySelector(".btn_delete_basket");
 if (sendLocalStorage === null || sendLocalStorage === 0) {
 
@@ -106,26 +104,69 @@ priceHtml.innerHTML = `
 `;
 localStorage.setItem("totalBasket", JSON.stringify(totalBaskets))
 
-// Formulaire à envoyer a l'API + Gestion de la validation du formulaire //
+// Récupération de l'HTMl avant envoi du formulaire a l'API  //
 
 let fName = document.getElementById("firstname");
-if (/^[A-Za-z]{3,20}$/.test(fName)) {
-} else {
-}
-
 let lName = document.getElementById("lastname");
-if (/^[A-Za-z]$/.test(lName)) {
-} else {
-}
-
 let address = document.getElementById("address");
-
 let ville = document.getElementById("city");
-if (/^[A-Za-z]$/.test(ville)) {
-} else {
+let eMail = document.getElementById("email");
+
+// Gestion de la validation du formulaire //
+
+const textAlertName = (value) => {
+ return `${value} : Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères, minimum 3 caractères`;
 }
 
-let eMail = document.getElementById("email");
+const regEx = (value) => {
+    return /^[A-Za-z]{3,20}$/.test(value);
+}
+
+function fNameControl() {
+    let firstName = fName.value;
+    if (regEx(firstName)) {
+        return true;
+    } else {
+        alert(textAlertName("Prenom"))
+        return false;
+    }
+}
+function lNameControl() {
+    let lastName = lName.value;
+    if (regEx(lastName)) {
+        return true;
+    } else {
+        alert(textAlertName("Nom"))
+        return false;
+    }
+}
+function addressControl() {
+    let addresss = address.value;
+    if (/^[A-Za-z]{10,30}$/.test(addresss)) {
+        return true;
+    } else {
+        alert('Les symboles ne sont pas autorisé \n Ne pas dépasser 30 caractères, minimum 10 caractères')
+        return false;
+    }
+}
+function cityControl() {
+    let city = ville.value;
+    if (/^[A-Za-z]{1,45}$/.test(city)) {
+        return true;
+    } else {
+        alert('Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 45 caractères, minimum 1 caractère')
+        return false;
+    }
+}
+function emailControl() {
+    let mail = eMail.value;
+    if (/^[A-Za-z0-9-.]{16,256}$/.test(mail)) {
+        return true;
+    } else {
+        alert('Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 256 caractères, minimum 16 caractères')
+        return false;
+    }
+}
 
 // Evenement de soumission ( addeventlistener (onsubmit)) fetch post /order //
 
@@ -136,7 +177,7 @@ if(sendLocalStorage === null || sendLocalStorage === 0){
     form.addEventListener('submit', function(event) {
         event.preventDefault();
         form.classList.add('was-validated');
-        if (form.checkValidity()){
+        if (form.checkValidity() && fNameControl() && lNameControl() && addressControl() && cityControl() && emailControl()){
             let contact = {
                 firstName: fName.value,
                 lastName: lName.value,

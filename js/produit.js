@@ -60,7 +60,6 @@ fetch('http://localhost:3000/api/cameras')
 
             // Boucle pour les différentes options //
 
-            function Option(){
                 let selectOptions = document.querySelector("#option_produit");
                 let options = idSelection.lenses;
                 for (let i = 0; i < options.length; i++) {
@@ -68,12 +67,10 @@ fetch('http://localhost:3000/api/cameras')
             <option value="${options[i]}">${options[i]}</option>
             `;
                 }
-            }
 
 
             // Fonction et bouton d'envoi des articles dans le local storage //
 
-            function Send() {
                 let numberProduct = document.querySelector("#number_product");
                 let sendBasket = document.querySelector("#btn_send");
                 sendBasket.addEventListener("click", (event)=> {
@@ -82,14 +79,12 @@ fetch('http://localhost:3000/api/cameras')
                         picture: idSelection.imageUrl,
                         name: idSelection.name,
                         _id: idSelection._id,
-                        lenses: Option.value,
+                        lenses: selectOptions.value,
                         quantity: Number(numberProduct.value),
                         price: idSelection.price / 100
                     }
                     console.log(productBasket);
-                    function sendLocalStorage(){
-                        return JSON.parse(localStorage.getItem("product"));
-                    }
+                    let sendLocalStorage = JSON.parse(localStorage.getItem("product"));
 
                     // Popup de confirmation d'ajout des articles dans le panier //
 
@@ -124,7 +119,7 @@ fetch('http://localhost:3000/api/cameras')
                         localStorage.setItem("product", JSON.stringify(sendLocalStorage));
                         popupConfirmation();
                     }
-                });}
+                });
         })
     })
     .catch(error => alert("Erreur : " + error));
