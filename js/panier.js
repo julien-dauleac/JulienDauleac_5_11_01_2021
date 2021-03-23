@@ -114,56 +114,76 @@ let eMail = document.getElementById("email");
 
 // Gestion de la validation du formulaire //
 
-const textAlertName = (value) => {
+const textAlertNameCity = (value) => {
     return `${value} : Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères, minimum 3 caractères`;
 }
 
-const regEx = (value) => {
+const textAlertEmail = (value) => {
+    return `${value} : L'adresse email n'est pas valide`;
+}
+
+const textAlertAddress = (value) => {
+    return `${value} : L'adresse n'est pas valide`;
+}
+
+const regExNameCity = (value) => {
     return /^[A-Za-z]{3,20}$/.test(value);
+}
+
+const regExEmail = (value) => {
+    return /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
+}
+
+const regExAddress = (value) => {
+    return /^[A-Za-z]{10,30}$/.test(value);
 }
 
 function fNameControl() {
     let firstName = fName.value;
-    if (regEx(firstName)) {
+    if (regExNameCity(firstName)) {
         return true;
     } else {
-        alert(textAlertName("Prenom"))
+        alert(textAlertNameCity("Prenom"))
         return false;
     }
 }
+
 function lNameControl() {
     let lastName = lName.value;
-    if (regEx(lastName)) {
+    if (regExNameCity(lastName)) {
         return true;
     } else {
-        alert(textAlertName("Nom"))
+        alert(textAlertNameCity("Nom"))
         return false;
     }
 }
+
 function addressControl() {
     let addresss = address.value;
-    if (/^[A-Za-z]{10,30}$/.test(addresss)) {
+    if (regExAddress(addresss)) {
         return true;
     } else {
-        alert('Les symboles ne sont pas autorisé \n Ne pas dépasser 30 caractères, minimum 10 caractères')
+        alert(textAlertAddress("Adresse"))
         return false;
     }
 }
+
 function cityControl() {
     let city = ville.value;
-    if (/^[A-Za-z]{1,45}$/.test(city)) {
+    if (regExNameCity(city)) {
         return true;
     } else {
-        alert('Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 45 caractères, minimum 1 caractère')
+        alert(textAlertNameCity("Ville"))
         return false;
     }
 }
+
 function emailControl() {
     let mail = eMail.value;
-    if (/^[A-Za-z0-9-.]{16,256}$/.test(mail)) {
+    if (regExEmail(mail)) {
         return true;
     } else {
-        alert('Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 256 caractères, minimum 16 caractères')
+        alert(textAlertEmail("eMail"))
         return false;
     }
 }
