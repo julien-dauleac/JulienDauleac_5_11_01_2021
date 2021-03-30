@@ -68,7 +68,6 @@ fetch('http://localhost:3000/api/cameras')
             `;
             }
 
-
             // Fonction et bouton d'envoi des articles dans le local storage //
 
             let numberProduct = document.querySelector("#number_product");

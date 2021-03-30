@@ -123,7 +123,7 @@ const textAlertEmail = (value) => {
 }
 
 const textAlertAddress = (value) => {
-    return `${value} : L'adresse n'est pas valide`;
+    return `${value} : L'adresse ne doit contenir que des lettres sans ponctuation et des chiffres \n Minimum 10 caractères`;
 }
 
 const regExNameCity = (value) => {
@@ -135,7 +135,7 @@ const regExEmail = (value) => {
 }
 
 const regExAddress = (value) => {
-    return /^[A-Za-z]{10,30}$/.test(value);
+    return /^[A-Za-z0-9\s]{10,30}$/.test(value);
 }
 
 function fNameControl() {
