@@ -100,7 +100,7 @@ const totalBaskets = totalBasket.reduce(reducer,0);
 
 let priceHtml = document.querySelector(".cart_price");
 priceHtml.innerHTML = `
- <td class ="w-25 align-middle"> Le prix total est de : ${totalBaskets} € </td>
+ <td class ="w-25 align-middle"> Le prix total du panier est de : ${totalBaskets} € </td>
 `;
 localStorage.setItem("totalBasket", JSON.stringify(totalBaskets))
 
