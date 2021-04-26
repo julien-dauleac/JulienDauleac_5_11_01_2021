@@ -13,7 +13,6 @@ fetch('http://localhost:3000/api/cameras')
     .then((response) => {
         const allCameras = response.json();
         allCameras.then((cameras) => {
-            console.log(cameras);
             cameras.forEach(camera =>{
                 let productCamera = new Product (camera.imageUrl, camera.name, camera.price, camera._id)
                 products.push(productCamera);
