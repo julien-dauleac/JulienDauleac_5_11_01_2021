@@ -81,7 +81,6 @@ fetch('http://localhost:3000/api/cameras')
                     quantity: Number(numberProduct.value),
                     price: idSelection.price / 100
                 }
-                console.log(productBasket);
                 let sendLocalStorage = JSON.parse(localStorage.getItem("product"));
 
                 // Popup de confirmation d'ajout des articles dans le panier //

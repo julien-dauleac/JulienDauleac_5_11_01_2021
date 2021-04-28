@@ -53,15 +53,29 @@ for (let l = 0; l < deleteButton.length; l++){
     })
 }
 
+// Parcourir le panier pour les _id //
+
+let _idBasket = [];
+
+// Fonction du prix total du panier //
+
+let totalBasket = [];
+
 // Fonction pour vider le panier //
 
 let buttonDeleteBasket = document.querySelector(".btn_delete_basket");
-if (sendLocalStorage === null || sendLocalStorage === 0) {
-
-} else {
+if (sendLocalStorage !== null && sendLocalStorage.length !== 0) {
     buttonDeleteBasket.innerHTML = `
 <td class="w-20 align-middle"><a class="btn btn-info delete_basket">Vider le panier</a></td>
-`;}
+`;
+    for (let n = 0; n < sendLocalStorage.length; n++){
+        let priceBasket = sendLocalStorage[n].price * sendLocalStorage[n].quantity;
+        totalBasket.push(priceBasket)
+        for (let i = 0; i < sendLocalStorage[n].quantity; i++){
+            _idBasket.push(sendLocalStorage[n]._id)
+        }
+    }
+}
 
 // Suppression de la key produit dans le local storage pour vider le panier //
 
@@ -72,24 +86,6 @@ buttonDeleteBasket.addEventListener('click', (e)=>{
     alert("Le panier a bien été vidé");
     window.location.href = "panier.html";
 });
-
-// Parcourir le panier pour les _id //
-
-let _idBasket = [];
-
-// Fonction du prix total du panier //
-
-let totalBasket = [];
-if (sendLocalStorage === null || sendLocalStorage === 0) {
-
-} else {
-    for (let n = 0; n < sendLocalStorage.length; n++){
-        let priceBasket = sendLocalStorage[n].price * sendLocalStorage[n].quantity;
-        totalBasket.push(priceBasket)
-        for (let i = 0; i < sendLocalStorage[n].quantity; i++){
-            _idBasket.push(sendLocalStorage[n]._id)
-        }
-    }}
 
 // Addition des prix des articles du panier avec la méthode .reducer //
 
@@ -191,7 +187,7 @@ function emailControl() {
 // Evenement de soumission ( addeventlistener (onsubmit)) fetch post //
 
 let form = document.getElementsByClassName('needs-validation')[0];
-if(sendLocalStorage === null || sendLocalStorage === 0){
+if(sendLocalStorage === null || sendLocalStorage.length === 0){
     form.innerHTML = ``
 } else {
     form.addEventListener('submit', function(event) {
