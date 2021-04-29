@@ -2,7 +2,6 @@
 
 let returnApi = JSON.parse(localStorage.getItem('returnAPI'));
 let priceTotal = localStorage.getItem('totalBasket');
-console.log(returnApi);
 
 // Injecteur le html dans la age confirmation //
 
