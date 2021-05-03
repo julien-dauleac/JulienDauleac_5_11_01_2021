@@ -86,7 +86,7 @@ fetch('http://localhost:3000/api/cameras')
                 // Popup de confirmation d'ajout des articles dans le panier //
 
                 let popupConfirmation = () =>{
-                    if(window.confirm(`${idSelection.name} option: ${Option.value} a bien été ajouté au panier
+                    if(window.confirm(`${idSelection.name} option: ${selectOptions.value} a bien été ajouté au panier
                     Consultez le panier OK ou revenir a l'accueil ANNULER`)){
                         window.location.href = "panier.html";
                     }else{
